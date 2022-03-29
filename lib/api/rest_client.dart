@@ -24,4 +24,18 @@ abstract class RestClient {
 
   @GET(kUrlLogout)
   Future<String?> logout();
+
+  @PUT(kUrlUpdatePassword)
+  Future<String?> updatePassword({@Field('password') required String password});
+
+  //parent
+  @GET(kUrlGetChildren)
+  Future<String?> getChildren();
+
+  @GET(kUrlGetChildSubjects)
+  Future<String?> getChildSubjects();
+
+  //assessment
+  @GET(kUrlAllAssessments)
+  Future<String?> getAssessments();
 }
