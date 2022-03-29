@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:guardian_plus/core/providers/auth_provider/auth_provider.dart';
 import 'package:guardian_plus/feature/assignments/assignments.dart';
 import 'package:guardian_plus/feature/calender/calendar.dart';
 import 'package:guardian_plus/feature/home/home.dart';
@@ -7,6 +8,7 @@ import 'package:guardian_plus/feature/notices/notices.dart';
 import 'package:guardian_plus/feature/profile/profile.dart';
 import 'package:guardian_plus/feature/progress/progress.dart';
 import 'package:guardian_plus/feature/weeklyroutine/weeklyroutine.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class MainDrawer extends StatefulWidget {
   const MainDrawer({Key? key}) : super(key: key);
@@ -29,7 +31,10 @@ class _MainDrawerState extends State<MainDrawer> {
                 color: Color(0xff0129ba),
               ),
             ),
-            accountName: const Text('displayName'),
+            accountName: Consumer(
+                builder: (context, ref, child) => Text(ref
+                    .watch(authRef)
+                    .maybeWhen(orElse: () => '', success: (v) => v?.userId ?? ''))),
             accountEmail: const Text('email'),
             onDetailsPressed: () {
               Navigator.push(
