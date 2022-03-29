@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:guardian_plus/assignments/assignmentdetails.dart';
 
-import '../feature/drawer/drawer.dart';
+import '../../assignments/assignmentdetails.dart';
+import '../drawer/drawer.dart';
 
 class Assignments extends StatefulWidget {
   const Assignments({Key? key}) : super(key: key);
@@ -11,7 +11,6 @@ class Assignments extends StatefulWidget {
 }
 
 class _AssignmentsState extends State<Assignments> {
-  @override
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -49,7 +48,8 @@ class _AssignmentsState extends State<Assignments> {
                   onTap: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => AssignmentDetails()),
+                      MaterialPageRoute(
+                          builder: (context) => AssignmentDetails()),
                     );
                   },
                 ),
