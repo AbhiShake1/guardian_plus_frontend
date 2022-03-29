@@ -38,7 +38,7 @@ class _MainDrawerState extends State<MainDrawer> {
             accountEmail: const Text('email'),
             onDetailsPressed: () {
               Navigator.push(
-                  context, MaterialPageRoute(builder: (context) => Profile()));
+                  context, MaterialPageRoute(builder: (context) => const Profile()));
             },
           ),
           ListTile(
@@ -53,8 +53,8 @@ class _MainDrawerState extends State<MainDrawer> {
             title: const Text('Weekly Routine'),
             trailing: const Icon(Icons.schedule),
             onTap: () {
-              Navigator.push(
-                  context, MaterialPageRoute(builder: (context) => WeeklyRoutine()));
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => const WeeklyRoutine()));
             },
           ),
           ListTile(
@@ -79,15 +79,15 @@ class _MainDrawerState extends State<MainDrawer> {
             trailing: const Icon(Icons.assessment),
             onTap: () {
               Navigator.push(
-                  context, MaterialPageRoute(builder: (context) => Notices()));
+                  context, MaterialPageRoute(builder: (context) => const Notices()));
             },
           ),
           ListTile(
             title: const Text('Progress'),
             trailing: const Icon(Icons.grade),
             onTap: () {
-              Navigator.push(
-                  context, MaterialPageRoute(builder: (context) => Progress()));
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => const Progress()));
             },
           ),
           ListTile(
@@ -100,7 +100,8 @@ class _MainDrawerState extends State<MainDrawer> {
             title: const Text('Logout'),
             trailing: const Icon(Icons.exit_to_app),
             onTap: () {
-              Navigator.push(
+              ProviderScope.containerOf(context).read(authRef.notifier).logout();
+              Navigator.pushReplacement(
                   context, MaterialPageRoute(builder: (context) => const Mylogin()));
             },
           ),
