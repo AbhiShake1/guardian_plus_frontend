@@ -1,19 +1,20 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:guardian_plus/core/providers/assessment_provider/assessment_provider.dart';
+import 'package:guardian_plus/core/providers/auth_provider/auth_provider.dart';
+import 'package:guardian_plus/core/providers/auth_provider/repository_providers.dart';
+import 'package:guardian_plus/core/repositories/repository_providers.dart';
 import 'package:guardian_plus/feature/drawer/drawer.dart';
 import 'package:guardian_plus/feature/notices/noticedetails.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class Notices extends StatefulWidget {
+class Notices extends ConsumerWidget {
   const Notices({Key? key}) : super(key: key);
 
   @override
-  _NoticesState createState() => _NoticesState();
-}
-
-class _NoticesState extends State<Notices> {
-  get _data => null;
-
-  @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final _data = ref.watch(assessmentRepositoryRef).getAssessments();
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -22,15 +23,17 @@ class _NoticesState extends State<Notices> {
         elevation: 0.0,
       ),
       drawer: const MainDrawer(),
-      body: FutureBuilder(
+      body: FutureBuilder<String?>(
           future: _data,
           builder: (_, snapshot) {
+            final List notices = jsonDecode(snapshot.data ?? '[]');
             if (snapshot.connectionState == ConnectionState.waiting) {
               return const Center(
                 child: CircularProgressIndicator(),
               );
             } else {
               return ListView.builder(
+                itemCount: notices.length,
                 itemBuilder: (_, index) {
                   return Container(
                     decoration: BoxDecoration(
@@ -44,9 +47,9 @@ class _NoticesState extends State<Notices> {
                     ),
                     margin: const EdgeInsets.all(5.0),
                     child: ListTile(
-                      title: const Text(
-                        "",
-                        style: TextStyle(fontSize: 20.0, color: Colors.white),
+                      title: Text(
+                        notices[index].toString(),
+                        style: const TextStyle(fontSize: 20.0, color: Colors.white),
                       ),
                       onTap: () {
                         Navigator.push(

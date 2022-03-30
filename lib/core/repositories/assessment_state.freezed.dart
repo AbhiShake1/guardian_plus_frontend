@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
-part of 'auth_state.dart';
+part of 'assessment_state.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,12 +15,12 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-class _$AuthStateTearOff {
-  const _$AuthStateTearOff();
+class _$AssessmentStateTearOff {
+  const _$AssessmentStateTearOff();
 
-  _Success success({required UserModel? userModel}) {
+  _Success success({required String assessments}) {
     return _Success(
-      userModel: userModel,
+      assessments: assessments,
     );
   }
 
@@ -44,13 +44,13 @@ class _$AuthStateTearOff {
 }
 
 /// @nodoc
-const $AuthState = _$AuthStateTearOff();
+const $AssessmentState = _$AssessmentStateTearOff();
 
 /// @nodoc
-mixin _$AuthState {
+mixin _$AssessmentState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(UserModel? userModel) success,
+    required TResult Function(String assessments) success,
     required TResult Function() loading,
     required TResult Function() initial,
     required TResult Function() verified,
@@ -59,7 +59,7 @@ mixin _$AuthState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(UserModel? userModel)? success,
+    TResult Function(String assessments)? success,
     TResult Function()? loading,
     TResult Function()? initial,
     TResult Function()? verified,
@@ -68,7 +68,7 @@ mixin _$AuthState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(UserModel? userModel)? success,
+    TResult Function(String assessments)? success,
     TResult Function()? loading,
     TResult Function()? initial,
     TResult Function()? verified,
@@ -107,31 +107,31 @@ mixin _$AuthState {
 }
 
 /// @nodoc
-abstract class $AuthStateCopyWith<$Res> {
-  factory $AuthStateCopyWith(AuthState value, $Res Function(AuthState) then) =
-      _$AuthStateCopyWithImpl<$Res>;
+abstract class $AssessmentStateCopyWith<$Res> {
+  factory $AssessmentStateCopyWith(
+          AssessmentState value, $Res Function(AssessmentState) then) =
+      _$AssessmentStateCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$AuthStateCopyWithImpl<$Res> implements $AuthStateCopyWith<$Res> {
-  _$AuthStateCopyWithImpl(this._value, this._then);
+class _$AssessmentStateCopyWithImpl<$Res>
+    implements $AssessmentStateCopyWith<$Res> {
+  _$AssessmentStateCopyWithImpl(this._value, this._then);
 
-  final AuthState _value;
+  final AssessmentState _value;
   // ignore: unused_field
-  final $Res Function(AuthState) _then;
+  final $Res Function(AssessmentState) _then;
 }
 
 /// @nodoc
 abstract class _$SuccessCopyWith<$Res> {
   factory _$SuccessCopyWith(_Success value, $Res Function(_Success) then) =
       __$SuccessCopyWithImpl<$Res>;
-  $Res call({UserModel? userModel});
-
-  $UserModelCopyWith<$Res>? get userModel;
+  $Res call({String assessments});
 }
 
 /// @nodoc
-class __$SuccessCopyWithImpl<$Res> extends _$AuthStateCopyWithImpl<$Res>
+class __$SuccessCopyWithImpl<$Res> extends _$AssessmentStateCopyWithImpl<$Res>
     implements _$SuccessCopyWith<$Res> {
   __$SuccessCopyWithImpl(_Success _value, $Res Function(_Success) _then)
       : super(_value, (v) => _then(v as _Success));
@@ -141,39 +141,28 @@ class __$SuccessCopyWithImpl<$Res> extends _$AuthStateCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? userModel = freezed,
+    Object? assessments = freezed,
   }) {
     return _then(_Success(
-      userModel: userModel == freezed
-          ? _value.userModel
-          : userModel // ignore: cast_nullable_to_non_nullable
-              as UserModel?,
+      assessments: assessments == freezed
+          ? _value.assessments
+          : assessments // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
-  }
-
-  @override
-  $UserModelCopyWith<$Res>? get userModel {
-    if (_value.userModel == null) {
-      return null;
-    }
-
-    return $UserModelCopyWith<$Res>(_value.userModel!, (value) {
-      return _then(_value.copyWith(userModel: value));
-    });
   }
 }
 
 /// @nodoc
 
 class _$_Success implements _Success {
-  const _$_Success({required this.userModel});
+  const _$_Success({required this.assessments});
 
   @override
-  final UserModel? userModel;
+  final String assessments;
 
   @override
   String toString() {
-    return 'AuthState.success(userModel: $userModel)';
+    return 'AssessmentState.success(assessments: $assessments)';
   }
 
   @override
@@ -181,12 +170,13 @@ class _$_Success implements _Success {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _Success &&
-            const DeepCollectionEquality().equals(other.userModel, userModel));
+            const DeepCollectionEquality()
+                .equals(other.assessments, assessments));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(userModel));
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(assessments));
 
   @JsonKey(ignore: true)
   @override
@@ -196,31 +186,31 @@ class _$_Success implements _Success {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(UserModel? userModel) success,
+    required TResult Function(String assessments) success,
     required TResult Function() loading,
     required TResult Function() initial,
     required TResult Function() verified,
     required TResult Function(String message) failure,
   }) {
-    return success(userModel);
+    return success(assessments);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(UserModel? userModel)? success,
+    TResult Function(String assessments)? success,
     TResult Function()? loading,
     TResult Function()? initial,
     TResult Function()? verified,
     TResult Function(String message)? failure,
   }) {
-    return success?.call(userModel);
+    return success?.call(assessments);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(UserModel? userModel)? success,
+    TResult Function(String assessments)? success,
     TResult Function()? loading,
     TResult Function()? initial,
     TResult Function()? verified,
@@ -228,7 +218,7 @@ class _$_Success implements _Success {
     required TResult orElse(),
   }) {
     if (success != null) {
-      return success(userModel);
+      return success(assessments);
     }
     return orElse();
   }
@@ -274,12 +264,13 @@ class _$_Success implements _Success {
   }
 }
 
-abstract class _Success implements AuthState {
-  const factory _Success({required UserModel? userModel}) = _$_Success;
+abstract class _Success implements AssessmentState {
+  const factory _Success({required String assessments}) = _$_Success;
 
-  UserModel? get userModel;
+  String get assessments;
   @JsonKey(ignore: true)
-  _$SuccessCopyWith<_Success> get copyWith => throw _privateConstructorUsedError;
+  _$SuccessCopyWith<_Success> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -289,7 +280,7 @@ abstract class _$LoadingCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$LoadingCopyWithImpl<$Res> extends _$AuthStateCopyWithImpl<$Res>
+class __$LoadingCopyWithImpl<$Res> extends _$AssessmentStateCopyWithImpl<$Res>
     implements _$LoadingCopyWith<$Res> {
   __$LoadingCopyWithImpl(_Loading _value, $Res Function(_Loading) _then)
       : super(_value, (v) => _then(v as _Loading));
@@ -305,7 +296,7 @@ class _$_Loading implements _Loading {
 
   @override
   String toString() {
-    return 'AuthState.loading()';
+    return 'AssessmentState.loading()';
   }
 
   @override
@@ -320,7 +311,7 @@ class _$_Loading implements _Loading {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(UserModel? userModel) success,
+    required TResult Function(String assessments) success,
     required TResult Function() loading,
     required TResult Function() initial,
     required TResult Function() verified,
@@ -332,7 +323,7 @@ class _$_Loading implements _Loading {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(UserModel? userModel)? success,
+    TResult Function(String assessments)? success,
     TResult Function()? loading,
     TResult Function()? initial,
     TResult Function()? verified,
@@ -344,7 +335,7 @@ class _$_Loading implements _Loading {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(UserModel? userModel)? success,
+    TResult Function(String assessments)? success,
     TResult Function()? loading,
     TResult Function()? initial,
     TResult Function()? verified,
@@ -398,7 +389,7 @@ class _$_Loading implements _Loading {
   }
 }
 
-abstract class _Loading implements AuthState {
+abstract class _Loading implements AssessmentState {
   const factory _Loading() = _$_Loading;
 }
 
@@ -409,7 +400,7 @@ abstract class _$InitialCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$InitialCopyWithImpl<$Res> extends _$AuthStateCopyWithImpl<$Res>
+class __$InitialCopyWithImpl<$Res> extends _$AssessmentStateCopyWithImpl<$Res>
     implements _$InitialCopyWith<$Res> {
   __$InitialCopyWithImpl(_Initial _value, $Res Function(_Initial) _then)
       : super(_value, (v) => _then(v as _Initial));
@@ -425,7 +416,7 @@ class _$_Initial implements _Initial {
 
   @override
   String toString() {
-    return 'AuthState.initial()';
+    return 'AssessmentState.initial()';
   }
 
   @override
@@ -440,7 +431,7 @@ class _$_Initial implements _Initial {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(UserModel? userModel) success,
+    required TResult Function(String assessments) success,
     required TResult Function() loading,
     required TResult Function() initial,
     required TResult Function() verified,
@@ -452,7 +443,7 @@ class _$_Initial implements _Initial {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(UserModel? userModel)? success,
+    TResult Function(String assessments)? success,
     TResult Function()? loading,
     TResult Function()? initial,
     TResult Function()? verified,
@@ -464,7 +455,7 @@ class _$_Initial implements _Initial {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(UserModel? userModel)? success,
+    TResult Function(String assessments)? success,
     TResult Function()? loading,
     TResult Function()? initial,
     TResult Function()? verified,
@@ -518,7 +509,7 @@ class _$_Initial implements _Initial {
   }
 }
 
-abstract class _Initial implements AuthState {
+abstract class _Initial implements AssessmentState {
   const factory _Initial() = _$_Initial;
 }
 
@@ -529,7 +520,7 @@ abstract class _$VerifiedCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$VerifiedCopyWithImpl<$Res> extends _$AuthStateCopyWithImpl<$Res>
+class __$VerifiedCopyWithImpl<$Res> extends _$AssessmentStateCopyWithImpl<$Res>
     implements _$VerifiedCopyWith<$Res> {
   __$VerifiedCopyWithImpl(_Verified _value, $Res Function(_Verified) _then)
       : super(_value, (v) => _then(v as _Verified));
@@ -545,7 +536,7 @@ class _$_Verified implements _Verified {
 
   @override
   String toString() {
-    return 'AuthState.verified()';
+    return 'AssessmentState.verified()';
   }
 
   @override
@@ -560,7 +551,7 @@ class _$_Verified implements _Verified {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(UserModel? userModel) success,
+    required TResult Function(String assessments) success,
     required TResult Function() loading,
     required TResult Function() initial,
     required TResult Function() verified,
@@ -572,7 +563,7 @@ class _$_Verified implements _Verified {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(UserModel? userModel)? success,
+    TResult Function(String assessments)? success,
     TResult Function()? loading,
     TResult Function()? initial,
     TResult Function()? verified,
@@ -584,7 +575,7 @@ class _$_Verified implements _Verified {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(UserModel? userModel)? success,
+    TResult Function(String assessments)? success,
     TResult Function()? loading,
     TResult Function()? initial,
     TResult Function()? verified,
@@ -638,7 +629,7 @@ class _$_Verified implements _Verified {
   }
 }
 
-abstract class _Verified implements AuthState {
+abstract class _Verified implements AssessmentState {
   const factory _Verified() = _$_Verified;
 }
 
@@ -650,7 +641,7 @@ abstract class _$FailureCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$FailureCopyWithImpl<$Res> extends _$AuthStateCopyWithImpl<$Res>
+class __$FailureCopyWithImpl<$Res> extends _$AssessmentStateCopyWithImpl<$Res>
     implements _$FailureCopyWith<$Res> {
   __$FailureCopyWithImpl(_Failure _value, $Res Function(_Failure) _then)
       : super(_value, (v) => _then(v as _Failure));
@@ -681,7 +672,7 @@ class _$_Failure implements _Failure {
 
   @override
   String toString() {
-    return 'AuthState.failure(message: $message)';
+    return 'AssessmentState.failure(message: $message)';
   }
 
   @override
@@ -704,7 +695,7 @@ class _$_Failure implements _Failure {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(UserModel? userModel) success,
+    required TResult Function(String assessments) success,
     required TResult Function() loading,
     required TResult Function() initial,
     required TResult Function() verified,
@@ -716,7 +707,7 @@ class _$_Failure implements _Failure {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(UserModel? userModel)? success,
+    TResult Function(String assessments)? success,
     TResult Function()? loading,
     TResult Function()? initial,
     TResult Function()? verified,
@@ -728,7 +719,7 @@ class _$_Failure implements _Failure {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(UserModel? userModel)? success,
+    TResult Function(String assessments)? success,
     TResult Function()? loading,
     TResult Function()? initial,
     TResult Function()? verified,
@@ -782,10 +773,11 @@ class _$_Failure implements _Failure {
   }
 }
 
-abstract class _Failure implements AuthState {
+abstract class _Failure implements AssessmentState {
   const factory _Failure({required String message}) = _$_Failure;
 
   String get message;
   @JsonKey(ignore: true)
-  _$FailureCopyWith<_Failure> get copyWith => throw _privateConstructorUsedError;
+  _$FailureCopyWith<_Failure> get copyWith =>
+      throw _privateConstructorUsedError;
 }

@@ -1,18 +1,18 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../assignments/assignmentdetails.dart';
+import '../../core/repositories/repository_providers.dart';
 import '../drawer/drawer.dart';
 
-class Assignments extends StatefulWidget {
+class Assignments extends ConsumerWidget {
   const Assignments({Key? key}) : super(key: key);
 
   @override
-  _AssignmentsState createState() => _AssignmentsState();
-}
-
-class _AssignmentsState extends State<Assignments> {
-  @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final _data = ref.watch(assessmentRepositoryRef).getAssessments();
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -21,43 +21,47 @@ class _AssignmentsState extends State<Assignments> {
         elevation: 0.0,
       ),
       drawer: const MainDrawer(),
-      body: FutureBuilder(builder: (_, snapshot) {
-        if (snapshot.connectionState == ConnectionState.waiting) {
-          return const Center(
-            child: CircularProgressIndicator(),
-          );
-        } else {
-          return ListView.builder(
-            itemBuilder: (_, index) {
-              return Container(
-                decoration: BoxDecoration(
-                  color: const Color(0xff0129ba),
-                  borderRadius: BorderRadius.circular(5.0),
-                  gradient: const LinearGradient(
-                    colors: [Color(0xff1e63da), Color(0xff0129ba)],
-                    begin: Alignment.centerRight,
-                    end: Alignment(-1.0, -1.0),
-                  ),
-                ),
-                margin: const EdgeInsets.all(5.0),
-                child: ListTile(
-                  title: const Text(
-                    " ",
-                    style: TextStyle(fontSize: 20.0, color: Colors.white),
-                  ),
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => AssignmentDetails()),
-                    );
-                  },
-                ),
+      body: FutureBuilder<String?>(
+          future: _data,
+          builder: (_, snapshot) {
+            final List assessments = jsonDecode(snapshot.data ?? '[]');
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return const Center(
+                child: CircularProgressIndicator(),
               );
-            },
-          );
-        }
-      }),
+            } else {
+              return ListView.builder(
+                itemCount: assessments.length,
+                itemBuilder: (_, index) {
+                  return Container(
+                    decoration: BoxDecoration(
+                      color: const Color(0xff0129ba),
+                      borderRadius: BorderRadius.circular(5.0),
+                      gradient: const LinearGradient(
+                        colors: [Color(0xff1e63da), Color(0xff0129ba)],
+                        begin: Alignment.centerRight,
+                        end: Alignment(-1.0, -1.0),
+                      ),
+                    ),
+                    margin: const EdgeInsets.all(5.0),
+                    child: ListTile(
+                      title: Text(
+                        assessments[index].toString(),
+                        style: const TextStyle(fontSize: 20.0, color: Colors.white),
+                      ),
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => AssignmentDetails()),
+                        );
+                      },
+                    ),
+                  );
+                },
+              );
+            }
+          }),
     );
   }
 }

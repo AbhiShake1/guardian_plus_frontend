@@ -1,6 +1,6 @@
 const kbaseUrl = 'https://guardian-plus.herokuapp.com/';
 const _kAuthUrl = kbaseUrl + 'api=auth/';
-const _kAssessmentUrl = kbaseUrl + 'api=assessment/';
+const _kAssessmentUrl = kbaseUrl + 'api=assessments/';
 const _kParentUrl = kbaseUrl + 'api=parent/';
 
 const kUrlLogin = _kAuthUrl + 'signin/';
