@@ -1,12 +1,10 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:guardian_plus/core/models/assessment_model/assessment_model.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../../assignments/assignmentdetails.dart';
 import '../../core/repositories/repository_providers.dart';
 import '../drawer/drawer.dart';
+import 'assignmentdetails.dart';
 
 class Assignments extends ConsumerWidget {
   const Assignments({Key? key}) : super(key: key);

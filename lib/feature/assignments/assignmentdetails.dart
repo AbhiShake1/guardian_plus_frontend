@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:guardian_plus/core/models/assessment_model/assessment_model.dart';
 
 class AssignmentDetails extends StatelessWidget {
-  const AssignmentDetails({Key? key}) : super(key: key);
+  const AssignmentDetails({Key? key, required this.model}) : super(key: key);
+
+  final AssessmentModel model;
 
   @override
   Widget build(BuildContext context) {
