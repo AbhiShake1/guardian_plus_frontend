@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:guardian_plus/core/models/assessment_model/assessment_model.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../assignments/assignmentdetails.dart';
@@ -21,10 +22,10 @@ class Assignments extends ConsumerWidget {
         elevation: 0.0,
       ),
       drawer: const MainDrawer(),
-      body: FutureBuilder<String?>(
+      body: FutureBuilder<List<AssessmentModel?>?>(
           future: _data,
           builder: (_, snapshot) {
-            final List assessments = jsonDecode(snapshot.data ?? '[]');
+            final List<AssessmentModel?> assessments = snapshot.data ?? [];
             if (snapshot.connectionState == ConnectionState.waiting) {
               return const Center(
                 child: CircularProgressIndicator(),
@@ -46,14 +47,15 @@ class Assignments extends ConsumerWidget {
                     margin: const EdgeInsets.all(5.0),
                     child: ListTile(
                       title: Text(
-                        assessments[index].toString(),
+                        assessments[index]?.subject ?? '',
                         style: const TextStyle(fontSize: 20.0, color: Colors.white),
                       ),
                       onTap: () {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => AssignmentDetails()),
+                              builder: (context) =>
+                                  AssignmentDetails(model: assessments[index]!)),
                         );
                       },
                     ),

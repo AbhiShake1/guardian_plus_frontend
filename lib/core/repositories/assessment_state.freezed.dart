@@ -18,7 +18,7 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$AssessmentStateTearOff {
   const _$AssessmentStateTearOff();
 
-  _Success success({required String assessments}) {
+  _Success success({required AssessmentModel assessments}) {
     return _Success(
       assessments: assessments,
     );
@@ -50,7 +50,7 @@ const $AssessmentState = _$AssessmentStateTearOff();
 mixin _$AssessmentState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String assessments) success,
+    required TResult Function(AssessmentModel assessments) success,
     required TResult Function() loading,
     required TResult Function() initial,
     required TResult Function() verified,
@@ -59,7 +59,7 @@ mixin _$AssessmentState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String assessments)? success,
+    TResult Function(AssessmentModel assessments)? success,
     TResult Function()? loading,
     TResult Function()? initial,
     TResult Function()? verified,
@@ -68,7 +68,7 @@ mixin _$AssessmentState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String assessments)? success,
+    TResult Function(AssessmentModel assessments)? success,
     TResult Function()? loading,
     TResult Function()? initial,
     TResult Function()? verified,
@@ -127,7 +127,9 @@ class _$AssessmentStateCopyWithImpl<$Res>
 abstract class _$SuccessCopyWith<$Res> {
   factory _$SuccessCopyWith(_Success value, $Res Function(_Success) then) =
       __$SuccessCopyWithImpl<$Res>;
-  $Res call({String assessments});
+  $Res call({AssessmentModel assessments});
+
+  $AssessmentModelCopyWith<$Res> get assessments;
 }
 
 /// @nodoc
@@ -147,8 +149,15 @@ class __$SuccessCopyWithImpl<$Res> extends _$AssessmentStateCopyWithImpl<$Res>
       assessments: assessments == freezed
           ? _value.assessments
           : assessments // ignore: cast_nullable_to_non_nullable
-              as String,
+              as AssessmentModel,
     ));
+  }
+
+  @override
+  $AssessmentModelCopyWith<$Res> get assessments {
+    return $AssessmentModelCopyWith<$Res>(_value.assessments, (value) {
+      return _then(_value.copyWith(assessments: value));
+    });
   }
 }
 
@@ -158,7 +167,7 @@ class _$_Success implements _Success {
   const _$_Success({required this.assessments});
 
   @override
-  final String assessments;
+  final AssessmentModel assessments;
 
   @override
   String toString() {
@@ -186,7 +195,7 @@ class _$_Success implements _Success {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String assessments) success,
+    required TResult Function(AssessmentModel assessments) success,
     required TResult Function() loading,
     required TResult Function() initial,
     required TResult Function() verified,
@@ -198,7 +207,7 @@ class _$_Success implements _Success {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String assessments)? success,
+    TResult Function(AssessmentModel assessments)? success,
     TResult Function()? loading,
     TResult Function()? initial,
     TResult Function()? verified,
@@ -210,7 +219,7 @@ class _$_Success implements _Success {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String assessments)? success,
+    TResult Function(AssessmentModel assessments)? success,
     TResult Function()? loading,
     TResult Function()? initial,
     TResult Function()? verified,
@@ -265,9 +274,9 @@ class _$_Success implements _Success {
 }
 
 abstract class _Success implements AssessmentState {
-  const factory _Success({required String assessments}) = _$_Success;
+  const factory _Success({required AssessmentModel assessments}) = _$_Success;
 
-  String get assessments;
+  AssessmentModel get assessments;
   @JsonKey(ignore: true)
   _$SuccessCopyWith<_Success> get copyWith =>
       throw _privateConstructorUsedError;
@@ -311,7 +320,7 @@ class _$_Loading implements _Loading {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String assessments) success,
+    required TResult Function(AssessmentModel assessments) success,
     required TResult Function() loading,
     required TResult Function() initial,
     required TResult Function() verified,
@@ -323,7 +332,7 @@ class _$_Loading implements _Loading {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String assessments)? success,
+    TResult Function(AssessmentModel assessments)? success,
     TResult Function()? loading,
     TResult Function()? initial,
     TResult Function()? verified,
@@ -335,7 +344,7 @@ class _$_Loading implements _Loading {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String assessments)? success,
+    TResult Function(AssessmentModel assessments)? success,
     TResult Function()? loading,
     TResult Function()? initial,
     TResult Function()? verified,
@@ -431,7 +440,7 @@ class _$_Initial implements _Initial {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String assessments) success,
+    required TResult Function(AssessmentModel assessments) success,
     required TResult Function() loading,
     required TResult Function() initial,
     required TResult Function() verified,
@@ -443,7 +452,7 @@ class _$_Initial implements _Initial {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String assessments)? success,
+    TResult Function(AssessmentModel assessments)? success,
     TResult Function()? loading,
     TResult Function()? initial,
     TResult Function()? verified,
@@ -455,7 +464,7 @@ class _$_Initial implements _Initial {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String assessments)? success,
+    TResult Function(AssessmentModel assessments)? success,
     TResult Function()? loading,
     TResult Function()? initial,
     TResult Function()? verified,
@@ -551,7 +560,7 @@ class _$_Verified implements _Verified {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String assessments) success,
+    required TResult Function(AssessmentModel assessments) success,
     required TResult Function() loading,
     required TResult Function() initial,
     required TResult Function() verified,
@@ -563,7 +572,7 @@ class _$_Verified implements _Verified {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String assessments)? success,
+    TResult Function(AssessmentModel assessments)? success,
     TResult Function()? loading,
     TResult Function()? initial,
     TResult Function()? verified,
@@ -575,7 +584,7 @@ class _$_Verified implements _Verified {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String assessments)? success,
+    TResult Function(AssessmentModel assessments)? success,
     TResult Function()? loading,
     TResult Function()? initial,
     TResult Function()? verified,
@@ -695,7 +704,7 @@ class _$_Failure implements _Failure {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String assessments) success,
+    required TResult Function(AssessmentModel assessments) success,
     required TResult Function() loading,
     required TResult Function() initial,
     required TResult Function() verified,
@@ -707,7 +716,7 @@ class _$_Failure implements _Failure {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String assessments)? success,
+    TResult Function(AssessmentModel assessments)? success,
     TResult Function()? loading,
     TResult Function()? initial,
     TResult Function()? verified,
@@ -719,7 +728,7 @@ class _$_Failure implements _Failure {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String assessments)? success,
+    TResult Function(AssessmentModel assessments)? success,
     TResult Function()? loading,
     TResult Function()? initial,
     TResult Function()? verified,

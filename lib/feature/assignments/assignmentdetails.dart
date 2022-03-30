@@ -1,13 +1,8 @@
 import 'package:flutter/material.dart';
 
-class AssignmentDetails extends StatefulWidget {
+class AssignmentDetails extends StatelessWidget {
   const AssignmentDetails({Key? key}) : super(key: key);
 
-  @override
-  _AssignmentDetailsState createState() => _AssignmentDetailsState();
-}
-
-class _AssignmentDetailsState extends State<AssignmentDetails> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

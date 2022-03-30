@@ -15,8 +15,6 @@ abstract class AuthRepository {
   Future<String?> logout();
 
   Future<UserModel?> getCurrentUser();
-
-  Future<String?> getAssessments();
 }
 
 class AuthRepositoryImpl extends AuthRepository {
@@ -59,16 +57,6 @@ class AuthRepositoryImpl extends AuthRepository {
       return res;
     } catch (e) {
       return null;
-    }
-  }
-
-  @override
-  Future<String?> getAssessments() async {
-    try {
-      final res = await _api.getAssessments();
-      return res;
-    } catch (e) {
-      return '';
     }
   }
 }

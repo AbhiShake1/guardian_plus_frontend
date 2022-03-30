@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:guardian_plus/core/models/assessment_model/assessment_model.dart';
 
-class NoticeDetails extends StatefulWidget {
-  const NoticeDetails({Key? key}) : super(key: key);
+class NoticeDetails extends StatelessWidget {
+  const NoticeDetails({Key? key, required this.model}) : super(key: key);
 
-  @override
-  _NoticeDetailsState createState() => _NoticeDetailsState();
-}
+  final AssessmentModel model;
 
-class _NoticeDetailsState extends State<NoticeDetails> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,30 +21,30 @@ class _NoticeDetailsState extends State<NoticeDetails> {
             child: Padding(
               padding: const EdgeInsets.only(top: 20.0),
               child: Column(
-                children: const <Widget>[
+                children: <Widget>[
                   Text(
-                    'Title',
-                    style: TextStyle(
+                    model.subject,
+                    style: const TextStyle(
                       fontSize: 25.0,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  SizedBox(width: 10.0),
+                  const SizedBox(width: 10.0),
                   Text(
-                    'description',
-                    style: TextStyle(
+                    model.task,
+                    style: const TextStyle(
                       fontSize: 25.0,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  SizedBox(width: 10.0),
+                  const SizedBox(width: 10.0),
                   Text(
-                    'Date',
-                    style: TextStyle(
+                    model.deadline,
+                    style: const TextStyle(
                       fontSize: 18.0,
                     ),
                   ),
-                  SizedBox(width: 10.0),
+                  const SizedBox(width: 10.0),
                 ],
               ),
             ),

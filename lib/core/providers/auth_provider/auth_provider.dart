@@ -41,14 +41,9 @@ class AuthProvider extends StateNotifier<AuthState> {
 
   Future<bool> logout() async {
     state = const AuthState.loading();
-    final user = await _authService.logout();
-    if (user == null) {
-      state = const AuthState.initial();
-      await _authService.logout();
-      return true;
-    } else {
-      state = const AuthState.failure(message: 'Failed to logout.');
-      return false;
-    }
+    await _authService.logout();
+    state = const AuthState.initial();
+    await _authService.logout();
+    return true;
   }
 }

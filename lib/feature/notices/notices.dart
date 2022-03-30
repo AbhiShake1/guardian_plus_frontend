@@ -1,9 +1,5 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
-import 'package:guardian_plus/core/providers/assessment_provider/assessment_provider.dart';
-import 'package:guardian_plus/core/providers/auth_provider/auth_provider.dart';
-import 'package:guardian_plus/core/providers/auth_provider/repository_providers.dart';
+import 'package:guardian_plus/core/models/assessment_model/assessment_model.dart';
 import 'package:guardian_plus/core/repositories/repository_providers.dart';
 import 'package:guardian_plus/feature/drawer/drawer.dart';
 import 'package:guardian_plus/feature/notices/noticedetails.dart';
@@ -23,10 +19,10 @@ class Notices extends ConsumerWidget {
         elevation: 0.0,
       ),
       drawer: const MainDrawer(),
-      body: FutureBuilder<String?>(
+      body: FutureBuilder<List<AssessmentModel?>?>(
           future: _data,
           builder: (_, snapshot) {
-            final List notices = jsonDecode(snapshot.data ?? '[]');
+            final List<AssessmentModel?> notices = snapshot.data ?? [];
             if (snapshot.connectionState == ConnectionState.waiting) {
               return const Center(
                 child: CircularProgressIndicator(),
@@ -48,14 +44,15 @@ class Notices extends ConsumerWidget {
                     margin: const EdgeInsets.all(5.0),
                     child: ListTile(
                       title: Text(
-                        notices[index].toString(),
+                        notices[index]?.subject ?? '',
                         style: const TextStyle(fontSize: 20.0, color: Colors.white),
                       ),
                       onTap: () {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => const NoticeDetails()),
+                              builder: (context) =>
+                                  NoticeDetails(model: notices[index]!)),
                         );
                       },
                     ),

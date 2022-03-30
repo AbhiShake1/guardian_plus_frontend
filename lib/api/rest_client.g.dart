@@ -21,7 +21,7 @@ class _RestClient implements RestClient {
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = {'uid': userId, 'password': password};
-    final _result = await _dio.fetch<String>(_setStreamType<UserModel>(
+    final _result = await _dio.fetch<String?>(_setStreamType<UserModel>(
         Options(method: 'POST', headers: _headers, extra: _extra)
             .compose(
                 _dio.options, 'https://guardian-plus.herokuapp.com/api=auth/signin/',
@@ -114,18 +114,20 @@ class _RestClient implements RestClient {
   }
 
   @override
-  Future<String?> getAssessments() async {
+  Future<List<AssessmentModel>?> getAssessments() async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
-    final _result = await _dio.fetch<String>(_setStreamType<String>(
+    final _result = await _dio.fetch<String>(_setStreamType(
         Options(method: 'GET', headers: _headers, extra: _extra)
             .compose(_dio.options,
                 'https://guardian-plus.herokuapp.com/api=assessments/get_all/',
                 queryParameters: queryParameters, data: _data)
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = _result.data;
+    final List assessments = jsonDecode(_result.data ?? '[]');
+    final List<AssessmentModel> value = List.generate(
+        assessments.length, (index) => AssessmentModel.fromJson(assessments[index]));
     return value;
   }
 

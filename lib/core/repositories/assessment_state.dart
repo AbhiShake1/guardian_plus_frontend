@@ -1,11 +1,12 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:guardian_plus/core/models/assessment_model/assessment_model.dart';
 
 part 'assessment_state.freezed.dart';
 
 @freezed
 class AssessmentState with _$AssessmentState {
   const factory AssessmentState.success({
-    required String assessments,
+    required AssessmentModel assessments,
   }) = _Success;
 
   const factory AssessmentState.loading() = _Loading;

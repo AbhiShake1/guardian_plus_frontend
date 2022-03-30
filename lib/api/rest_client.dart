@@ -1,9 +1,10 @@
 import 'dart:convert';
 
-import 'package:retrofit/retrofit.dart';
 import 'package:dio/dio.dart';
+import 'package:retrofit/retrofit.dart';
 
 import '../core/constants/endpoints.dart';
+import '../core/models/assessment_model/assessment_model.dart';
 import '../core/models/user_model/user_model.dart';
 
 part 'rest_client.g.dart';
@@ -37,5 +38,5 @@ abstract class RestClient {
 
   //assessment
   @GET(kUrlAllAssessments)
-  Future<String?> getAssessments();
+  Future<List<AssessmentModel>?> getAssessments();
 }

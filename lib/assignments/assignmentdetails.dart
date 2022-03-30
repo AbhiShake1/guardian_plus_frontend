@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:guardian_plus/core/models/assessment_model/assessment_model.dart';
 
-class AssignmentDetails extends StatefulWidget {
-  @override
-  _AssignmentDetailsState createState() => _AssignmentDetailsState();
-}
+class AssignmentDetails extends StatelessWidget {
+  const AssignmentDetails({Key? key, required this.model}) : super(key: key);
 
-class _AssignmentDetailsState extends State<AssignmentDetails> {
+  final AssessmentModel model;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -13,11 +13,11 @@ class _AssignmentDetailsState extends State<AssignmentDetails> {
         centerTitle: true,
         elevation: 0.0,
       ),
-      body: Container(
+      body: SizedBox(
         width: MediaQuery.of(context).size.width,
         child: Card(
           child: Padding(
-            padding: EdgeInsets.all(10.0),
+            padding: const EdgeInsets.all(10.0),
             child: Padding(
               padding: const EdgeInsets.only(top: 20.0),
               child: Column(
@@ -26,8 +26,8 @@ class _AssignmentDetailsState extends State<AssignmentDetails> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
                       Text(
-                        'Subject:',
-                        style: TextStyle(
+                        model.subject,
+                        style: const TextStyle(
                           fontSize: 25.0,
                           fontWeight: FontWeight.bold,
                         ),
@@ -35,18 +35,18 @@ class _AssignmentDetailsState extends State<AssignmentDetails> {
                       SizedBox(width: 10.0),
                     ],
                   ),
-                  SizedBox(height: 20.0),
+                  const SizedBox(height: 20.0),
                   Text(
-                    'Assignment',
-                    style: TextStyle(fontSize: 18.0),
+                    model.task,
+                    style: const TextStyle(fontSize: 18.0),
                   ),
-                  SizedBox(height: 8.0),
-                  SizedBox(height: 20.0),
+                  const SizedBox(height: 8.0),
+                  const SizedBox(height: 20.0),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
-                      Text('Deadline', style: TextStyle(fontSize: 18.0)),
-                      SizedBox(width: 8.0),
+                      Text(model.deadline, style: const TextStyle(fontSize: 18.0)),
+                      const SizedBox(width: 8.0),
                     ],
                   ),
                 ],
