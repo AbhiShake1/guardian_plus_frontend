@@ -10,3 +10,4 @@ const kUrlUpdatePassword = _kAuthUrl + 'update_password/';
 const kUrlAllAssessments = _kAssessmentUrl + 'get_all/';
 const kUrlGetChildren = _kParentUrl + 'get_children/';
 const kUrlGetChildSubjects = _kParentUrl + 'get_child_subjects/';
+const kUrlGetChildProgress = _kParentUrl + 'get_child_progress/';

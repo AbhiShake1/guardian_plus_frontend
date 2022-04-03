@@ -33,8 +33,11 @@ abstract class RestClient {
   @GET(kUrlGetChildren)
   Future<String?> getChildren();
 
-  @GET(kUrlGetChildSubjects)
-  Future<String?> getChildSubjects();
+  @POST(kUrlGetChildSubjects)
+  Future<String?> getChildSubjects({@Field('uid') required String userId});
+
+  @POST(kUrlGetChildProgress)
+  Future<String?> getChildProgress({@Field('uid') required String userId});
 
   //assessment
   @GET(kUrlAllAssessments)

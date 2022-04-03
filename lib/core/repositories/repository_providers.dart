@@ -4,6 +4,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:guardian_plus/core/constants/endpoints.dart';
 import 'package:guardian_plus/core/repositories/assessment_repository.dart';
+import 'package:guardian_plus/core/repositories/progress_repository.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
@@ -41,6 +42,9 @@ final authRepositoryRef = Provider<AuthRepository>((ref) {
 
 final assessmentRepositoryRef = Provider<AssessmentRepository>((ref) {
   return AssessmentRepositoryImpl(api: ref.watch(apiClientRef));
+});
+final progressRepositoryRef = Provider<ProgressRepository>((ref) {
+  return ProgressRepositoryImpl(api: ref.watch(apiClientRef));
 });
 
 Future<String?> getAccessToken(FlutterSecureStorage _storage) async {
