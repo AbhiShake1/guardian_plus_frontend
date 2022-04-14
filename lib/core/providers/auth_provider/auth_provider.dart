@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:guardian_plus/core/preferences.dart';
 import 'package:guardian_plus/core/providers/auth_provider/repository_providers.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -42,8 +43,8 @@ class AuthProvider extends StateNotifier<AuthState> {
   Future<bool> logout() async {
     state = const AuthState.loading();
     await _authService.logout();
+    await Preferences.clear();
     state = const AuthState.initial();
-    await _authService.logout();
     return true;
   }
 }

@@ -1,4 +1,6 @@
 // ignore_for_file: deprecated_member_use
+import 'package:guardian_plus/core/extensions/extensions.dart';
+import 'package:guardian_plus/core/preferences.dart';
 import 'package:velocity_x/velocity_x.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -123,16 +125,16 @@ class Mylogin extends HookWidget {
                     elevation: 5.0,
                     child: GestureDetector(
                       onTap: () async {
-                        final success = await ProviderScope.containerOf(context)
-                            .read(authRef.notifier)
-                            .login(
-                                userId: emailController.text,
-                                password: passwordController.text);
+                        final success = await context.read(authRef.notifier).login(
+                              userId: emailController.text,
+                              password: passwordController.text,
+                            );
                         if (success) {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => const Home()),
-                          );
+                          await Preferences.setString(
+                              'uid_key', emailController.text);
+                          await Preferences.setString(
+                              'password_key', passwordController.text);
+                          context.pushReplacement(const Home());
                         } else {
                           context.showToast(msg: 'Invalid credentials');
                         }

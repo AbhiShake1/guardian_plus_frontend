@@ -4,15 +4,9 @@ import 'package:guardian_plus/feature/notices/notices.dart';
 import 'package:guardian_plus/feature/progress/progress.dart';
 import 'package:guardian_plus/feature/weeklyroutine/weeklyroutine.dart';
 
-class Home extends StatefulWidget {
+class Home extends StatelessWidget {
   const Home({Key? key}) : super(key: key);
 
-  @override
-  _HomeState createState() => _HomeState();
-}
-
-class _HomeState extends State<Home> {
-  get auth => null;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -266,8 +260,10 @@ class _HomeState extends State<Home> {
               ),
               GestureDetector(
                 onTap: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => WeeklyRoutine()));
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const WeeklyRoutine()));
                 },
                 child: Padding(
                   padding: const EdgeInsets.only(top: 20.0, left: 15.0),

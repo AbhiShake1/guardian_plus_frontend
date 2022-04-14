@@ -21,14 +21,14 @@ class _RestClient implements RestClient {
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = {'uid': userId, 'password': password};
-    final _result = await _dio.fetch<Map<String, dynamic>?>(
-        _setStreamType<UserModel>(Options(
-                method: 'POST', headers: _headers, extra: _extra)
+    final _result = await _dio.fetch<String>(_setStreamType<UserModel>(
+        Options(method: 'POST', headers: _headers, extra: _extra)
             .compose(
                 _dio.options, 'https://guardian-plus.herokuapp.com/api=auth/signin/',
                 queryParameters: queryParameters, data: _data)
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = _result.data == null ? null : UserModel.fromJson(_result.data!);
+    final value =
+        _result.data == null ? null : UserModel.fromJson(jsonDecode(_result.data!));
     return value;
   }
 
@@ -38,14 +38,14 @@ class _RestClient implements RestClient {
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
-    final _result = await _dio.fetch<Map<String, dynamic>?>(
-        _setStreamType<UserModel>(
-            Options(method: 'GET', headers: _headers, extra: _extra)
-                .compose(_dio.options,
-                    'https://guardian-plus.herokuapp.com/api=auth/current_user/',
-                    queryParameters: queryParameters, data: _data)
-                .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = _result.data == null ? null : UserModel.fromJson(_result.data!);
+    final _result = await _dio.fetch<String?>(_setStreamType<UserModel>(
+        Options(method: 'GET', headers: _headers, extra: _extra)
+            .compose(_dio.options,
+                'https://guardian-plus.herokuapp.com/api=auth/current_user/',
+                queryParameters: queryParameters, data: _data)
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value =
+        _result.data == null ? null : UserModel.fromJson(jsonDecode(_result.data!));
     return value;
   }
 
@@ -98,7 +98,7 @@ class _RestClient implements RestClient {
   }
 
   @override
-  Future<String?> getChildSubjects({required String userId}) async {
+  Future<String?> getChildSubjects({required userId}) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
@@ -107,6 +107,22 @@ class _RestClient implements RestClient {
         Options(method: 'POST', headers: _headers, extra: _extra)
             .compose(_dio.options,
                 'https://guardian-plus.herokuapp.com/api=parent/get_child_subjects/',
+                queryParameters: queryParameters, data: _data)
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = _result.data;
+    return value;
+  }
+
+  @override
+  Future<String?> getChildProgress({required userId}) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = {'uid': userId};
+    final _result = await _dio.fetch<String>(_setStreamType<String>(
+        Options(method: 'POST', headers: _headers, extra: _extra)
+            .compose(_dio.options,
+                'https://guardian-plus.herokuapp.com/api=parent/get_child_progress/',
                 queryParameters: queryParameters, data: _data)
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = _result.data;
@@ -143,21 +159,5 @@ class _RestClient implements RestClient {
       }
     }
     return requestOptions;
-  }
-
-  @override
-  Future<String?> getChildProgress({required String userId}) async {
-    const _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{};
-    final _data = {'uid': userId};
-    final _result = await _dio.fetch<String>(_setStreamType<String>(
-        Options(method: 'POST', headers: _headers, extra: _extra)
-            .compose(_dio.options,
-                'https://guardian-plus.herokuapp.com/api=parent/get_child_progress/',
-                queryParameters: queryParameters, data: _data)
-            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = _result.data;
-    return value;
   }
 }

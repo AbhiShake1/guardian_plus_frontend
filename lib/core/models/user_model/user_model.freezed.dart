@@ -22,9 +22,20 @@ UserModel _$UserModelFromJson(Map<String, dynamic> json) {
 class _$UserModelTearOff {
   const _$UserModelTearOff();
 
-  _UserModel call({String? userId, bool? isStaff, bool? isSuperuser}) {
+  _UserModel call(
+      {String? userId,
+      String? grade,
+      String? parent,
+      String? address,
+      int? phoneNo,
+      bool? isStaff,
+      bool? isSuperuser}) {
     return _UserModel(
       userId: userId,
+      grade: grade,
+      parent: parent,
+      address: address,
+      phoneNo: phoneNo,
       isStaff: isStaff,
       isSuperuser: isSuperuser,
     );
@@ -41,6 +52,10 @@ const $UserModel = _$UserModelTearOff();
 /// @nodoc
 mixin _$UserModel {
   String? get userId => throw _privateConstructorUsedError;
+  String? get grade => throw _privateConstructorUsedError;
+  String? get parent => throw _privateConstructorUsedError;
+  String? get address => throw _privateConstructorUsedError;
+  int? get phoneNo => throw _privateConstructorUsedError;
   bool? get isStaff => throw _privateConstructorUsedError;
   bool? get isSuperuser => throw _privateConstructorUsedError;
 
@@ -54,7 +69,14 @@ mixin _$UserModel {
 abstract class $UserModelCopyWith<$Res> {
   factory $UserModelCopyWith(UserModel value, $Res Function(UserModel) then) =
       _$UserModelCopyWithImpl<$Res>;
-  $Res call({String? userId, bool? isStaff, bool? isSuperuser});
+  $Res call(
+      {String? userId,
+      String? grade,
+      String? parent,
+      String? address,
+      int? phoneNo,
+      bool? isStaff,
+      bool? isSuperuser});
 }
 
 /// @nodoc
@@ -68,6 +90,10 @@ class _$UserModelCopyWithImpl<$Res> implements $UserModelCopyWith<$Res> {
   @override
   $Res call({
     Object? userId = freezed,
+    Object? grade = freezed,
+    Object? parent = freezed,
+    Object? address = freezed,
+    Object? phoneNo = freezed,
     Object? isStaff = freezed,
     Object? isSuperuser = freezed,
   }) {
@@ -76,6 +102,22 @@ class _$UserModelCopyWithImpl<$Res> implements $UserModelCopyWith<$Res> {
           ? _value.userId
           : userId // ignore: cast_nullable_to_non_nullable
               as String?,
+      grade: grade == freezed
+          ? _value.grade
+          : grade // ignore: cast_nullable_to_non_nullable
+              as String?,
+      parent: parent == freezed
+          ? _value.parent
+          : parent // ignore: cast_nullable_to_non_nullable
+              as String?,
+      address: address == freezed
+          ? _value.address
+          : address // ignore: cast_nullable_to_non_nullable
+              as String?,
+      phoneNo: phoneNo == freezed
+          ? _value.phoneNo
+          : phoneNo // ignore: cast_nullable_to_non_nullable
+              as int?,
       isStaff: isStaff == freezed
           ? _value.isStaff
           : isStaff // ignore: cast_nullable_to_non_nullable
@@ -94,7 +136,14 @@ abstract class _$UserModelCopyWith<$Res> implements $UserModelCopyWith<$Res> {
           _UserModel value, $Res Function(_UserModel) then) =
       __$UserModelCopyWithImpl<$Res>;
   @override
-  $Res call({String? userId, bool? isStaff, bool? isSuperuser});
+  $Res call(
+      {String? userId,
+      String? grade,
+      String? parent,
+      String? address,
+      int? phoneNo,
+      bool? isStaff,
+      bool? isSuperuser});
 }
 
 /// @nodoc
@@ -109,6 +158,10 @@ class __$UserModelCopyWithImpl<$Res> extends _$UserModelCopyWithImpl<$Res>
   @override
   $Res call({
     Object? userId = freezed,
+    Object? grade = freezed,
+    Object? parent = freezed,
+    Object? address = freezed,
+    Object? phoneNo = freezed,
     Object? isStaff = freezed,
     Object? isSuperuser = freezed,
   }) {
@@ -117,6 +170,22 @@ class __$UserModelCopyWithImpl<$Res> extends _$UserModelCopyWithImpl<$Res>
           ? _value.userId
           : userId // ignore: cast_nullable_to_non_nullable
               as String?,
+      grade: grade == freezed
+          ? _value.grade
+          : grade // ignore: cast_nullable_to_non_nullable
+              as String?,
+      parent: parent == freezed
+          ? _value.parent
+          : parent // ignore: cast_nullable_to_non_nullable
+              as String?,
+      address: address == freezed
+          ? _value.address
+          : address // ignore: cast_nullable_to_non_nullable
+              as String?,
+      phoneNo: phoneNo == freezed
+          ? _value.phoneNo
+          : phoneNo // ignore: cast_nullable_to_non_nullable
+              as int?,
       isStaff: isStaff == freezed
           ? _value.isStaff
           : isStaff // ignore: cast_nullable_to_non_nullable
@@ -132,7 +201,14 @@ class __$UserModelCopyWithImpl<$Res> extends _$UserModelCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_UserModel implements _UserModel {
-  _$_UserModel({this.userId, this.isStaff, this.isSuperuser});
+  _$_UserModel(
+      {this.userId,
+      this.grade,
+      this.parent,
+      this.address,
+      this.phoneNo,
+      this.isStaff,
+      this.isSuperuser});
 
   factory _$_UserModel.fromJson(Map<String, dynamic> json) =>
       _$$_UserModelFromJson(json);
@@ -140,13 +216,21 @@ class _$_UserModel implements _UserModel {
   @override
   final String? userId;
   @override
+  final String? grade;
+  @override
+  final String? parent;
+  @override
+  final String? address;
+  @override
+  final int? phoneNo;
+  @override
   final bool? isStaff;
   @override
   final bool? isSuperuser;
 
   @override
   String toString() {
-    return 'UserModel(userId: $userId, isStaff: $isStaff, isSuperuser: $isSuperuser)';
+    return 'UserModel(userId: $userId, grade: $grade, parent: $parent, address: $address, phoneNo: $phoneNo, isStaff: $isStaff, isSuperuser: $isSuperuser)';
   }
 
   @override
@@ -155,6 +239,10 @@ class _$_UserModel implements _UserModel {
         (other.runtimeType == runtimeType &&
             other is _UserModel &&
             const DeepCollectionEquality().equals(other.userId, userId) &&
+            const DeepCollectionEquality().equals(other.grade, grade) &&
+            const DeepCollectionEquality().equals(other.parent, parent) &&
+            const DeepCollectionEquality().equals(other.address, address) &&
+            const DeepCollectionEquality().equals(other.phoneNo, phoneNo) &&
             const DeepCollectionEquality().equals(other.isStaff, isStaff) &&
             const DeepCollectionEquality()
                 .equals(other.isSuperuser, isSuperuser));
@@ -164,6 +252,10 @@ class _$_UserModel implements _UserModel {
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(userId),
+      const DeepCollectionEquality().hash(grade),
+      const DeepCollectionEquality().hash(parent),
+      const DeepCollectionEquality().hash(address),
+      const DeepCollectionEquality().hash(phoneNo),
       const DeepCollectionEquality().hash(isStaff),
       const DeepCollectionEquality().hash(isSuperuser));
 
@@ -179,14 +271,28 @@ class _$_UserModel implements _UserModel {
 }
 
 abstract class _UserModel implements UserModel {
-  factory _UserModel({String? userId, bool? isStaff, bool? isSuperuser}) =
-      _$_UserModel;
+  factory _UserModel(
+      {String? userId,
+      String? grade,
+      String? parent,
+      String? address,
+      int? phoneNo,
+      bool? isStaff,
+      bool? isSuperuser}) = _$_UserModel;
 
   factory _UserModel.fromJson(Map<String, dynamic> json) =
       _$_UserModel.fromJson;
 
   @override
   String? get userId;
+  @override
+  String? get grade;
+  @override
+  String? get parent;
+  @override
+  String? get address;
+  @override
+  int? get phoneNo;
   @override
   bool? get isStaff;
   @override

@@ -279,7 +279,8 @@ abstract class _Success implements AuthState {
 
   UserModel? get userModel;
   @JsonKey(ignore: true)
-  _$SuccessCopyWith<_Success> get copyWith => throw _privateConstructorUsedError;
+  _$SuccessCopyWith<_Success> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -787,5 +788,6 @@ abstract class _Failure implements AuthState {
 
   String get message;
   @JsonKey(ignore: true)
-  _$FailureCopyWith<_Failure> get copyWith => throw _privateConstructorUsedError;
+  _$FailureCopyWith<_Failure> get copyWith =>
+      throw _privateConstructorUsedError;
 }
