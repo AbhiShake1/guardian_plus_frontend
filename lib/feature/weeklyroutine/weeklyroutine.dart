@@ -1,18 +1,16 @@
-import 'package:flutter/material.dart';
-import 'package:guardian_plus/feature/drawer/drawer.dart';
+import 'dart:convert';
 
-class WeeklyRoutine extends StatefulWidget {
+import 'package:flutter/material.dart';
+import 'package:guardian_plus/core/repositories/repository_providers.dart';
+import 'package:guardian_plus/feature/drawer/drawer.dart';
+import 'package:guardian_plus/feature/drawer/name_provider.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+
+class WeeklyRoutine extends ConsumerWidget {
   const WeeklyRoutine({Key? key}) : super(key: key);
 
   @override
-  _WeeklyRoutineState createState() => _WeeklyRoutineState();
-}
-
-class _WeeklyRoutineState extends State<WeeklyRoutine> {
-  get routines => null;
-
-  @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
@@ -21,9 +19,18 @@ class _WeeklyRoutineState extends State<WeeklyRoutine> {
           elevation: 0.0,
         ),
         drawer: const MainDrawer(),
-        body: ListView(
-          scrollDirection: Axis.horizontal,
-          children: const <Widget>[],
-        ));
+        body: FutureBuilder<String?>(
+            future: ref.watch(routineRepositoryRef).getRoutine(
+                ref.watch(prefRef('uid_key')).whenOrNull(data: (d) => d)),
+            builder: (_, snapshot) {
+              if (!snapshot.hasData) {
+                return const Center(child: CircularProgressIndicator());
+              }
+              final List routine = jsonDecode(snapshot.data!);
+              return ListView(
+                children: List.generate(
+                    routine.length, (index) => Text(routine[index].toString())),
+              );
+            }));
   }
 }

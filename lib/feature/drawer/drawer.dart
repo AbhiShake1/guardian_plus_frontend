@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:guardian_plus/core/providers/auth_provider/auth_provider.dart';
 import 'package:guardian_plus/feature/assignments/assignments.dart';
 import 'package:guardian_plus/feature/calender/calendar.dart';
+import 'package:guardian_plus/feature/drawer/name_provider.dart';
 import 'package:guardian_plus/feature/home/home.dart';
 import 'package:guardian_plus/feature/login/login.dart';
 import 'package:guardian_plus/feature/notices/notices.dart';
@@ -33,9 +34,12 @@ class _MainDrawerState extends State<MainDrawer> {
             ),
             accountName: Consumer(
                 builder: (context, ref, child) => Text(ref
-                    .watch(authRef)
-                    .maybeWhen(orElse: () => '', success: (v) => v?.userId ?? ''))),
-            accountEmail: const Text('email'),
+                    .watch(prefRef('uid_key'))
+                    .maybeWhen(orElse: () => '', data: (d) => d ?? ''))),
+            accountEmail: Consumer(
+                builder: (context, ref, child) => Text(ref
+                    .watch(prefRef('uid_key'))
+                    .maybeWhen(orElse: () => '', data: (d) => d ?? ''))),
             onDetailsPressed: () {
               Navigator.push(
                   context, MaterialPageRoute(builder: (context) => const Profile()));

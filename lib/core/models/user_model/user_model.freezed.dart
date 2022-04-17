@@ -27,6 +27,7 @@ class _$UserModelTearOff {
       String? grade,
       String? parent,
       String? address,
+      String? school,
       int? phoneNo,
       bool? isStaff,
       bool? isSuperuser}) {
@@ -35,6 +36,7 @@ class _$UserModelTearOff {
       grade: grade,
       parent: parent,
       address: address,
+      school: school,
       phoneNo: phoneNo,
       isStaff: isStaff,
       isSuperuser: isSuperuser,
@@ -55,6 +57,7 @@ mixin _$UserModel {
   String? get grade => throw _privateConstructorUsedError;
   String? get parent => throw _privateConstructorUsedError;
   String? get address => throw _privateConstructorUsedError;
+  String? get school => throw _privateConstructorUsedError;
   int? get phoneNo => throw _privateConstructorUsedError;
   bool? get isStaff => throw _privateConstructorUsedError;
   bool? get isSuperuser => throw _privateConstructorUsedError;
@@ -74,6 +77,7 @@ abstract class $UserModelCopyWith<$Res> {
       String? grade,
       String? parent,
       String? address,
+      String? school,
       int? phoneNo,
       bool? isStaff,
       bool? isSuperuser});
@@ -93,6 +97,7 @@ class _$UserModelCopyWithImpl<$Res> implements $UserModelCopyWith<$Res> {
     Object? grade = freezed,
     Object? parent = freezed,
     Object? address = freezed,
+    Object? school = freezed,
     Object? phoneNo = freezed,
     Object? isStaff = freezed,
     Object? isSuperuser = freezed,
@@ -113,6 +118,10 @@ class _$UserModelCopyWithImpl<$Res> implements $UserModelCopyWith<$Res> {
       address: address == freezed
           ? _value.address
           : address // ignore: cast_nullable_to_non_nullable
+              as String?,
+      school: school == freezed
+          ? _value.school
+          : school // ignore: cast_nullable_to_non_nullable
               as String?,
       phoneNo: phoneNo == freezed
           ? _value.phoneNo
@@ -141,6 +150,7 @@ abstract class _$UserModelCopyWith<$Res> implements $UserModelCopyWith<$Res> {
       String? grade,
       String? parent,
       String? address,
+      String? school,
       int? phoneNo,
       bool? isStaff,
       bool? isSuperuser});
@@ -161,6 +171,7 @@ class __$UserModelCopyWithImpl<$Res> extends _$UserModelCopyWithImpl<$Res>
     Object? grade = freezed,
     Object? parent = freezed,
     Object? address = freezed,
+    Object? school = freezed,
     Object? phoneNo = freezed,
     Object? isStaff = freezed,
     Object? isSuperuser = freezed,
@@ -181,6 +192,10 @@ class __$UserModelCopyWithImpl<$Res> extends _$UserModelCopyWithImpl<$Res>
       address: address == freezed
           ? _value.address
           : address // ignore: cast_nullable_to_non_nullable
+              as String?,
+      school: school == freezed
+          ? _value.school
+          : school // ignore: cast_nullable_to_non_nullable
               as String?,
       phoneNo: phoneNo == freezed
           ? _value.phoneNo
@@ -206,6 +221,7 @@ class _$_UserModel implements _UserModel {
       this.grade,
       this.parent,
       this.address,
+      this.school,
       this.phoneNo,
       this.isStaff,
       this.isSuperuser});
@@ -222,6 +238,8 @@ class _$_UserModel implements _UserModel {
   @override
   final String? address;
   @override
+  final String? school;
+  @override
   final int? phoneNo;
   @override
   final bool? isStaff;
@@ -230,7 +248,7 @@ class _$_UserModel implements _UserModel {
 
   @override
   String toString() {
-    return 'UserModel(userId: $userId, grade: $grade, parent: $parent, address: $address, phoneNo: $phoneNo, isStaff: $isStaff, isSuperuser: $isSuperuser)';
+    return 'UserModel(userId: $userId, grade: $grade, parent: $parent, address: $address, school: $school, phoneNo: $phoneNo, isStaff: $isStaff, isSuperuser: $isSuperuser)';
   }
 
   @override
@@ -242,6 +260,7 @@ class _$_UserModel implements _UserModel {
             const DeepCollectionEquality().equals(other.grade, grade) &&
             const DeepCollectionEquality().equals(other.parent, parent) &&
             const DeepCollectionEquality().equals(other.address, address) &&
+            const DeepCollectionEquality().equals(other.school, school) &&
             const DeepCollectionEquality().equals(other.phoneNo, phoneNo) &&
             const DeepCollectionEquality().equals(other.isStaff, isStaff) &&
             const DeepCollectionEquality()
@@ -255,6 +274,7 @@ class _$_UserModel implements _UserModel {
       const DeepCollectionEquality().hash(grade),
       const DeepCollectionEquality().hash(parent),
       const DeepCollectionEquality().hash(address),
+      const DeepCollectionEquality().hash(school),
       const DeepCollectionEquality().hash(phoneNo),
       const DeepCollectionEquality().hash(isStaff),
       const DeepCollectionEquality().hash(isSuperuser));
@@ -276,6 +296,7 @@ abstract class _UserModel implements UserModel {
       String? grade,
       String? parent,
       String? address,
+      String? school,
       int? phoneNo,
       bool? isStaff,
       bool? isSuperuser}) = _$_UserModel;
@@ -291,6 +312,8 @@ abstract class _UserModel implements UserModel {
   String? get parent;
   @override
   String? get address;
+  @override
+  String? get school;
   @override
   int? get phoneNo;
   @override

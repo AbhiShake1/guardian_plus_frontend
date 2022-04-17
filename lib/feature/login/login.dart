@@ -7,6 +7,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../core/providers/auth_provider/auth_provider.dart';
+import '../../core/providers/auth_provider/repository_providers.dart';
 import '../home/home.dart';
 
 class Mylogin extends HookWidget {
@@ -125,15 +126,24 @@ class Mylogin extends HookWidget {
                     elevation: 5.0,
                     child: GestureDetector(
                       onTap: () async {
-                        final success = await context.read(authRef.notifier).login(
-                              userId: emailController.text,
-                              password: passwordController.text,
+                        final user = await context.read(authRepositoryRef).login(
+                              emailController.text,
+                              passwordController.text,
                             );
-                        if (success) {
+                        if (user != null) {
                           await Preferences.setString(
                               'uid_key', emailController.text);
                           await Preferences.setString(
                               'password_key', passwordController.text);
+                          await Preferences.setString(
+                              'address_key', user.address ?? '');
+                          await Preferences.setString(
+                              'guardian_key', user.parent ?? '');
+                          await Preferences.setString(
+                              'contact_key', user.phoneNo?.toString() ?? '');
+                          await Preferences.setString(
+                              'school_key', user.school ?? '');
+                          await Preferences.setString('grade_key', user.grade ?? '');
                           context.pushReplacement(const Home());
                         } else {
                           context.showToast(msg: 'Invalid credentials');

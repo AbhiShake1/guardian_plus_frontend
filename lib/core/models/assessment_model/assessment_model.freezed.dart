@@ -23,10 +23,7 @@ class _$AssessmentModelTearOff {
   const _$AssessmentModelTearOff();
 
   _AssessmentModel call(
-      {required int id,
-      required String subject,
-      required String task,
-      required String deadline}) {
+      {int? id, String? subject, String? task, String? deadline}) {
     return _AssessmentModel(
       id: id,
       subject: subject,
@@ -45,10 +42,10 @@ const $AssessmentModel = _$AssessmentModelTearOff();
 
 /// @nodoc
 mixin _$AssessmentModel {
-  int get id => throw _privateConstructorUsedError;
-  String get subject => throw _privateConstructorUsedError;
-  String get task => throw _privateConstructorUsedError;
-  String get deadline => throw _privateConstructorUsedError;
+  int? get id => throw _privateConstructorUsedError;
+  String? get subject => throw _privateConstructorUsedError;
+  String? get task => throw _privateConstructorUsedError;
+  String? get deadline => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -61,7 +58,7 @@ abstract class $AssessmentModelCopyWith<$Res> {
   factory $AssessmentModelCopyWith(
           AssessmentModel value, $Res Function(AssessmentModel) then) =
       _$AssessmentModelCopyWithImpl<$Res>;
-  $Res call({int id, String subject, String task, String deadline});
+  $Res call({int? id, String? subject, String? task, String? deadline});
 }
 
 /// @nodoc
@@ -84,19 +81,19 @@ class _$AssessmentModelCopyWithImpl<$Res>
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       subject: subject == freezed
           ? _value.subject
           : subject // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       task: task == freezed
           ? _value.task
           : task // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       deadline: deadline == freezed
           ? _value.deadline
           : deadline // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ));
   }
 }
@@ -108,7 +105,7 @@ abstract class _$AssessmentModelCopyWith<$Res>
           _AssessmentModel value, $Res Function(_AssessmentModel) then) =
       __$AssessmentModelCopyWithImpl<$Res>;
   @override
-  $Res call({int id, String subject, String task, String deadline});
+  $Res call({int? id, String? subject, String? task, String? deadline});
 }
 
 /// @nodoc
@@ -133,19 +130,19 @@ class __$AssessmentModelCopyWithImpl<$Res>
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       subject: subject == freezed
           ? _value.subject
           : subject // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       task: task == freezed
           ? _value.task
           : task // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       deadline: deadline == freezed
           ? _value.deadline
           : deadline // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ));
   }
 }
@@ -153,23 +150,19 @@ class __$AssessmentModelCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_AssessmentModel implements _AssessmentModel {
-  _$_AssessmentModel(
-      {required this.id,
-      required this.subject,
-      required this.task,
-      required this.deadline});
+  _$_AssessmentModel({this.id, this.subject, this.task, this.deadline});
 
   factory _$_AssessmentModel.fromJson(Map<String, dynamic> json) =>
       _$$_AssessmentModelFromJson(json);
 
   @override
-  final int id;
+  final int? id;
   @override
-  final String subject;
+  final String? subject;
   @override
-  final String task;
+  final String? task;
   @override
-  final String deadline;
+  final String? deadline;
 
   @override
   String toString() {
@@ -208,22 +201,22 @@ class _$_AssessmentModel implements _AssessmentModel {
 
 abstract class _AssessmentModel implements AssessmentModel {
   factory _AssessmentModel(
-      {required int id,
-      required String subject,
-      required String task,
-      required String deadline}) = _$_AssessmentModel;
+      {int? id,
+      String? subject,
+      String? task,
+      String? deadline}) = _$_AssessmentModel;
 
   factory _AssessmentModel.fromJson(Map<String, dynamic> json) =
       _$_AssessmentModel.fromJson;
 
   @override
-  int get id;
+  int? get id;
   @override
-  String get subject;
+  String? get subject;
   @override
-  String get task;
+  String? get task;
   @override
-  String get deadline;
+  String? get deadline;
   @override
   @JsonKey(ignore: true)
   _$AssessmentModelCopyWith<_AssessmentModel> get copyWith =>

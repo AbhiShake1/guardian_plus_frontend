@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:guardian_plus/core/models/assessment_model/assessment_model.dart';
+import 'package:guardian_plus/core/models/notice_model/notice_model.dart';
 
 class NoticeDetails extends StatelessWidget {
   const NoticeDetails({Key? key, required this.model}) : super(key: key);
 
-  final AssessmentModel model;
+  final NoticeModel model;
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +23,7 @@ class NoticeDetails extends StatelessWidget {
               child: Column(
                 children: <Widget>[
                   Text(
-                    model.subject,
+                    model.title,
                     style: const TextStyle(
                       fontSize: 25.0,
                       fontWeight: FontWeight.bold,
@@ -31,7 +31,7 @@ class NoticeDetails extends StatelessWidget {
                   ),
                   const SizedBox(width: 10.0),
                   Text(
-                    model.task,
+                    model.title,
                     style: const TextStyle(
                       fontSize: 25.0,
                       fontWeight: FontWeight.bold,
@@ -39,7 +39,7 @@ class NoticeDetails extends StatelessWidget {
                   ),
                   const SizedBox(width: 10.0),
                   Text(
-                    model.deadline,
+                    model.endDate,
                     style: const TextStyle(
                       fontSize: 18.0,
                     ),

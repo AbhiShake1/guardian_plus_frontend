@@ -8,10 +8,10 @@ part of 'assessment_model.dart';
 
 _$_AssessmentModel _$$_AssessmentModelFromJson(Map<String, dynamic> json) =>
     _$_AssessmentModel(
-      id: json['id'] as int,
-      subject: json['subject'] as String,
-      task: json['task'] as String,
-      deadline: json['deadline'] as String,
+      id: json['id'] as int?,
+      subject: json['subject'] as String?,
+      task: json['task'] as String?,
+      deadline: json['deadline'] as String?,
     );
 
 Map<String, dynamic> _$$_AssessmentModelToJson(_$_AssessmentModel instance) =>

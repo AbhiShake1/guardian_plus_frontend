@@ -10,6 +10,7 @@ class UserModel with _$UserModel {
       String? grade,
       String? parent,
       String? address,
+      String? school,
       int? phoneNo,
       bool? isStaff,
       bool? isSuperuser}) = _UserModel;

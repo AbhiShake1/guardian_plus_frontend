@@ -14,9 +14,10 @@ class ProgressRepositoryImpl extends ProgressRepository {
   @override
   Future<String?> getProgress(String userId) async {
     try {
-      final res = await _api.getChildSubjects(userId: userId);
+      final res = await _api.getChildProgress(userId: userId);
       return res;
     } catch (e) {
+      print(e);
       return null;
     }
   }

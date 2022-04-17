@@ -5,12 +5,14 @@ import 'package:guardian_plus/feature/drawer/drawer.dart';
 import 'package:guardian_plus/feature/notices/noticedetails.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import '../../core/models/notice_model/notice_model.dart';
+
 class Notices extends ConsumerWidget {
   const Notices({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final _data = ref.watch(assessmentRepositoryRef).getAssessments();
+    final _data = ref.watch(noticeRepositoryRef).getNotices();
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -19,10 +21,10 @@ class Notices extends ConsumerWidget {
         elevation: 0.0,
       ),
       drawer: const MainDrawer(),
-      body: FutureBuilder<List<AssessmentModel?>?>(
+      body: FutureBuilder<List<NoticeModel?>?>(
           future: _data,
           builder: (_, snapshot) {
-            final List<AssessmentModel?> notices = snapshot.data ?? [];
+            final notices = snapshot.data ?? [];
             if (snapshot.connectionState == ConnectionState.waiting) {
               return const Center(
                 child: CircularProgressIndicator(),
@@ -44,7 +46,7 @@ class Notices extends ConsumerWidget {
                     margin: const EdgeInsets.all(5.0),
                     child: ListTile(
                       title: Text(
-                        notices[index]?.subject ?? '',
+                        notices[index]?.description ?? '',
                         style: const TextStyle(fontSize: 20.0, color: Colors.white),
                       ),
                       onTap: () {

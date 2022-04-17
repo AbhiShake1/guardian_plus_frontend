@@ -20,7 +20,6 @@ class AuthProvider extends StateNotifier<AuthState> {
     state = const AuthState.loading();
     final loginDetails = await _authService.login(userId, password);
     if (loginDetails != null) {
-      await _authService.saveLoginDetails(loginDetails);
       state = AuthState.success(userModel: loginDetails);
       return true;
     } else {

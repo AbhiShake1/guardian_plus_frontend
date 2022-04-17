@@ -45,7 +45,7 @@ class Assignments extends ConsumerWidget {
                     margin: const EdgeInsets.all(5.0),
                     child: ListTile(
                       title: Text(
-                        assessments[index]?.subject ?? '',
+                        assessments[index]?.task ?? '',
                         style: const TextStyle(fontSize: 20.0, color: Colors.white),
                       ),
                       onTap: () {

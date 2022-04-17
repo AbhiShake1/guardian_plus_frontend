@@ -24,29 +24,30 @@ class AssignmentDetails extends StatelessWidget {
                 children: <Widget>[
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    children: const <Widget>[
+                    children: [
                       Text(
-                        'Subject:',
-                        style: TextStyle(
+                        'Subject: ${model.task}',
+                        style: const TextStyle(
                           fontSize: 25.0,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                      SizedBox(width: 10.0),
+                      const SizedBox(width: 10.0),
                     ],
                   ),
                   const SizedBox(height: 20.0),
-                  const Text(
-                    'Assignment',
-                    style: TextStyle(fontSize: 18.0),
+                  Text(
+                    'Assignment: ${model.task}',
+                    style: const TextStyle(fontSize: 18.0),
                   ),
                   const SizedBox(height: 8.0),
                   const SizedBox(height: 20.0),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    children: const <Widget>[
-                      Text('Deadline', style: TextStyle(fontSize: 18.0)),
-                      SizedBox(width: 8.0),
+                    children: [
+                      Text('Deadline ${model.deadline}',
+                          style: const TextStyle(fontSize: 18.0)),
+                      const SizedBox(width: 8.0),
                     ],
                   ),
                 ],

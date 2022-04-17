@@ -1,8 +1,10 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 import '../../feature/event/event.dart';
-
 
 class Calendar extends StatefulWidget {
   const Calendar({Key? key}) : super(key: key);
@@ -22,6 +24,16 @@ class _CalendarState extends State<Calendar> {
   @override
   void initState() {
     selectedEvents = {};
+    var json;
+    Future.delayed(const Duration(milliseconds: 0), () async {
+      json = await rootBundle.load('json/events.json');
+    });
+    final events = jsonDecode(json);
+    for (final event in events) {
+      selectedEvents[DateTime.parse(event['date'])]?.add(
+        Event(title: event['event']),
+      );
+    }
     super.initState();
   }
 

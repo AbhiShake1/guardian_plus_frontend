@@ -1,16 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:guardian_plus/feature/drawer/drawer.dart';
+import 'package:guardian_plus/feature/drawer/name_provider.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class Profile extends StatefulWidget {
+class Profile extends ConsumerWidget {
   const Profile({Key? key}) : super(key: key);
 
   @override
-  _ProfileState createState() => _ProfileState();
-}
-
-class _ProfileState extends State<Profile> {
-  @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
         appBar: AppBar(
           centerTitle: true,
@@ -32,9 +29,9 @@ class _ProfileState extends State<Profile> {
                 ),
               ),
               Stack(
-                children: const <Widget>[
+                children: [
                   ListTile(
-                    title: Center(
+                    title: const Center(
                       child: Text(
                         'Name:',
                         style: TextStyle(
@@ -45,8 +42,10 @@ class _ProfileState extends State<Profile> {
                     ),
                     subtitle: Center(
                       child: Text(
-                        'name',
-                        style: TextStyle(
+                        ref
+                            .watch(prefRef('uid_key'))
+                            .maybeWhen(orElse: () => '', data: (d) => d),
+                        style: const TextStyle(
                           color: Colors.black,
                           fontSize: 20.0,
                         ),
@@ -55,8 +54,8 @@ class _ProfileState extends State<Profile> {
                   ),
                 ],
               ),
-              const ListTile(
-                title: Center(
+              ListTile(
+                title: const Center(
                   child: Text(
                     'Address:',
                     style: TextStyle(
@@ -67,16 +66,18 @@ class _ProfileState extends State<Profile> {
                 ),
                 subtitle: Center(
                   child: Text(
-                    'address',
-                    style: TextStyle(
+                    ref
+                        .watch(prefRef('address_key'))
+                        .maybeWhen(orElse: () => '', data: (d) => d ?? ''),
+                    style: const TextStyle(
                       color: Colors.black,
                       fontSize: 20.0,
                     ),
                   ),
                 ),
               ),
-              const ListTile(
-                title: Center(
+              ListTile(
+                title: const Center(
                   child: Text(
                     'Guardian Name:',
                     style: TextStyle(
@@ -87,25 +88,29 @@ class _ProfileState extends State<Profile> {
                 ),
                 subtitle: Center(
                   child: Text(
-                    'guardianname',
-                    style: TextStyle(
+                    ref
+                        .watch(prefRef('guardian_key'))
+                        .maybeWhen(orElse: () => '', data: (d) => d ?? ''),
+                    style: const TextStyle(
                       color: Colors.black,
                       fontSize: 20.0,
                     ),
                   ),
                 ),
               ),
-              const ListTile(
+              ListTile(
                 title: Center(
                   child: Text(
-                    'Contact Info:',
-                    style: TextStyle(
+                    ref
+                        .watch(prefRef('contact_key'))
+                        .maybeWhen(orElse: () => '', data: (d) => d ?? ''),
+                    style: const TextStyle(
                       color: Colors.black,
                       fontSize: 20.0,
                     ),
                   ),
                 ),
-                subtitle: Center(
+                subtitle: const Center(
                   child: Text(
                     'contact',
                     style: TextStyle(
@@ -117,28 +122,30 @@ class _ProfileState extends State<Profile> {
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: const <Widget>[
-                  Text(
+                children: [
+                  const Text(
                     "Grade: ",
                     style: TextStyle(
                       fontSize: 20.0,
                     ),
                   ),
-                  SizedBox(width: 5.0),
+                  const SizedBox(width: 5.0),
                   Text(
-                    'class',
-                    style: TextStyle(
+                    ref
+                        .watch(prefRef('grade_key'))
+                        .maybeWhen(orElse: () => '', data: (d) => d ?? ''),
+                    style: const TextStyle(
                       fontSize: 20.0,
                     ),
                   ),
-                  SizedBox(width: 5.0),
-                  Text(
+                  const SizedBox(width: 5.0),
+                  const Text(
                     'section',
                     style: TextStyle(
                       fontSize: 20.0,
                     ),
                   ),
-                  SizedBox(width: 5.0),
+                  const SizedBox(width: 5.0),
                 ],
               ),
             ],

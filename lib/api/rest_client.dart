@@ -5,6 +5,7 @@ import 'package:retrofit/retrofit.dart';
 
 import '../core/constants/endpoints.dart';
 import '../core/models/assessment_model/assessment_model.dart';
+import '../core/models/notice_model/notice_model.dart';
 import '../core/models/user_model/user_model.dart';
 
 part 'rest_client.g.dart';
@@ -41,5 +42,18 @@ abstract class RestClient {
 
   //assessment
   @GET(kUrlAllAssessments)
-  Future<List<AssessmentModel>?> getAssessments();
+  Future<List<AssessmentModel?>?> getAssessments();
+
+  //notice
+  @GET(kUrlAllNotices)
+  Future<List<NoticeModel?>?> getNotices();
+
+  //child
+  @POST(kUrlRoutine)
+  Future<String?> getRoutine(@Field('uid') String uid);
+
+  //feedback
+  @POST(kUrlPostFeedback)
+  Future<String?> postFeedback(
+      @Field('title') String title, @Field('description') String description);
 }

@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:guardian_plus/feature/drawer/drawer.dart';
+import 'package:guardian_plus/feature/drawer/name_provider.dart';
 import 'package:guardian_plus/feature/notices/notices.dart';
 import 'package:guardian_plus/feature/progress/progress.dart';
 import 'package:guardian_plus/feature/weeklyroutine/weeklyroutine.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+
+import '../feedback/feedback.dart';
 
 class Home extends StatelessWidget {
   const Home({Key? key}) : super(key: key);
@@ -46,12 +50,16 @@ class Home extends StatelessWidget {
                 ),
                 Container(
                   padding: const EdgeInsets.fromLTRB(20.0, 90.0, 0.0, 0.0),
-                  child: const Text(
-                    'School Name Here',
-                    style: TextStyle(
-                        fontSize: 25.0,
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold),
+                  child: Consumer(
+                    builder: (context, ref, child) => Text(
+                      ref
+                          .watch(prefRef('school_key'))
+                          .maybeWhen(orElse: () => '', data: (d) => d ?? ''),
+                      style: const TextStyle(
+                          fontSize: 25.0,
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold),
+                    ),
                   ),
                 ),
                 GestureDetector(
@@ -216,42 +224,50 @@ class Home extends StatelessWidget {
                       decoration: BoxDecoration(
                           color: const Color(0xffe55934),
                           borderRadius: BorderRadius.circular(20.0)),
-                      child: Padding(
-                        padding: const EdgeInsets.only(top: 15.0, left: 15.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            Stack(children: <Widget>[
-                              Opacity(
-                                opacity: 0.3,
-                                child: Container(
-                                  height: 75.0,
-                                  width: 75.0,
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(50.0),
+                      child: GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const FeedbackPage()));
+                        },
+                        child: Padding(
+                          padding: const EdgeInsets.only(top: 15.0, left: 15.0),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              Stack(children: <Widget>[
+                                Opacity(
+                                  opacity: 0.3,
+                                  child: Container(
+                                    height: 75.0,
+                                    width: 75.0,
+                                    decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(50.0),
+                                        color: Colors.white),
+                                  ),
+                                ),
+                                const Padding(
+                                  padding: EdgeInsets.only(left: 13.0, top: 13.0),
+                                  child: Icon(
+                                    Icons.feedback,
+                                    color: Colors.white,
+                                    size: 50.0,
+                                  ),
+                                ),
+                              ]),
+                              const Padding(
+                                padding: EdgeInsets.only(top: 25.0, left: 15.0),
+                                child: Text(
+                                  'Feedbacks',
+                                  style: TextStyle(
+                                      fontSize: 25.0,
+                                      fontWeight: FontWeight.bold,
                                       color: Colors.white),
                                 ),
                               ),
-                              const Padding(
-                                padding: EdgeInsets.only(left: 13.0, top: 13.0),
-                                child: Icon(
-                                  Icons.feedback,
-                                  color: Colors.white,
-                                  size: 50.0,
-                                ),
-                              ),
-                            ]),
-                            const Padding(
-                              padding: EdgeInsets.only(top: 25.0, left: 15.0),
-                              child: Text(
-                                'Feedbacks',
-                                style: TextStyle(
-                                    fontSize: 25.0,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.white),
-                              ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                       ),
                     ),

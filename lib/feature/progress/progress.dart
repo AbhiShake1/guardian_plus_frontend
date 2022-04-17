@@ -1,8 +1,10 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:guardian_plus/core/extensions/context_extensions.dart';
 import 'package:guardian_plus/core/repositories/repository_providers.dart';
 import 'package:guardian_plus/feature/drawer/drawer.dart';
+import 'package:guardian_plus/feature/drawer/name_provider.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class Progress extends StatelessWidget {
@@ -10,6 +12,7 @@ class Progress extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    num totalMarks = 0;
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -18,18 +21,28 @@ class Progress extends StatelessWidget {
       ),
       drawer: const MainDrawer(),
       body: FutureBuilder<String?>(
-        future: ProviderScope.containerOf(context)
-            .read(progressRepositoryRef)
-            .getProgress('abhi'),
+        future: context.read(progressRepositoryRef).getProgress(
+              context
+                  .read(prefRef('uid_key'))
+                  .maybeWhen(orElse: () => '', data: (d) => d ?? ''),
+            ),
         builder: (context, snapshot) {
-          if (!snapshot.hasData) return const CircularProgressIndicator();
+          if (!snapshot.hasData) {
+            return const Center(child: CircularProgressIndicator());
+          }
           final Map progresses = jsonDecode(snapshot.data!);
           return ListView(
-            scrollDirection: Axis.horizontal,
-            children: List.generate(
-              progresses.keys.length,
-              (index) => Text(progresses[progresses.keys.elementAt(index)]),
-            ),
+            children: [
+              ...List.generate(
+                progresses.keys.length,
+                (index) {
+                  totalMarks += progresses.values.elementAt(index)?['marks'] ?? 0;
+                  return Text(
+                      '${progresses.keys.elementAt(index)}: ${progresses.values.elementAt(index)}');
+                },
+              ),
+              Text('Final marks: ${totalMarks / progresses.keys.length}')
+            ],
           );
         },
       ),
