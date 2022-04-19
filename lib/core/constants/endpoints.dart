@@ -1,4 +1,4 @@
-const kbaseUrl = 'https://guardian-plus.herokuapp.com/';
+const kbaseUrl = 'https://guardianplus-production.up.railway.app/';
 const _kAuthUrl = kbaseUrl + 'api=auth/';
 const _kAssessmentUrl = kbaseUrl + 'api=assessments/';
 const _kNoticeUrl = kbaseUrl + 'api=notice/';
