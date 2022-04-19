@@ -39,13 +39,9 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
   table_calendar: ^3.0.0
-  retrofit: ^3.0.1+1
   json_annotation: ^4.4.0
   freezed_annotation: ^1.1.0
-  flutter_secure_storage: ^4.2.1
   hooks_riverpod: ^1.0.3
-  dio: ^4.0.5
-  pretty_dio_logger: ^1.2.0-beta-1
   velocity_x: ^3.0.0
   http: ^0.13.4
   shared_preferences: ^2.0.0

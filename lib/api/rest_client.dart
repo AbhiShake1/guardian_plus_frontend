@@ -1,59 +1,41 @@
 import 'dart:convert';
 
-import 'package:dio/dio.dart';
-import 'package:retrofit/retrofit.dart';
-
-import '../core/constants/endpoints.dart';
+import 'package:http/http.dart';
 import '../core/models/assessment_model/assessment_model.dart';
 import '../core/models/notice_model/notice_model.dart';
 import '../core/models/user_model/user_model.dart';
 
 part 'rest_client.g.dart';
 
-@RestApi()
 abstract class RestClient {
-  factory RestClient(Dio dio, {String baseUrl}) = _RestClient;
-
   //auth:
-  @POST(kUrlLogin)
   Future<UserModel?> login({
-    @Field('uid') required String userId,
-    @Field('password') required String password,
+    required String userId,
+    required String password,
   });
 
-  @GET(kUrlGetUser)
   Future<UserModel?> currentUser();
 
-  @GET(kUrlLogout)
   Future<String?> logout();
 
-  @PUT(kUrlUpdatePassword)
-  Future<String?> updatePassword({@Field('password') required String password});
+  Future<String?> updatePassword({required String password});
 
   //parent
-  @GET(kUrlGetChildren)
   Future<String?> getChildren();
 
-  @POST(kUrlGetChildSubjects)
-  Future<String?> getChildSubjects({@Field('uid') required String userId});
+  Future<String?> getChildSubjects({required String userId});
 
-  @POST(kUrlGetChildProgress)
-  Future<String?> getChildProgress({@Field('uid') required String userId});
+  Future<String?> getChildProgress({required String userId});
 
   //assessment
-  @GET(kUrlAllAssessments)
   Future<List<AssessmentModel?>?> getAssessments();
 
   //notice
-  @GET(kUrlAllNotices)
   Future<List<NoticeModel?>?> getNotices();
 
   //child
-  @POST(kUrlRoutine)
-  Future<String?> getRoutine(@Field('uid') String uid);
+  Future<String?> getRoutine(String uid);
 
   //feedback
-  @POST(kUrlPostFeedback)
-  Future<String?> postFeedback(
-      @Field('title') String title, @Field('description') String description);
+  Future<String?> postFeedback(String title, String description);
 }

@@ -177,7 +177,7 @@ packages:
     source: hosted
     version: "2.2.2"
   dio:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: dio
       url: "https://pub.dartlang.org"
@@ -237,13 +237,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.3"
-  flutter_secure_storage:
-    dependency: "direct main"
-    description:
-      name: flutter_secure_storage
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "4.2.1"
   flutter_test:
     dependency: "direct dev"
     description: flutter
@@ -450,13 +443,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.5.0"
-  pretty_dio_logger:
-    dependency: "direct main"
-    description:
-      name: pretty_dio_logger
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.2.0-beta-1"
   process:
     dependency: transitive
     description:
@@ -486,7 +472,7 @@ packages:
     source: hosted
     version: "3.0.1+1"
   retrofit:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: retrofit
       url: "https://pub.dartlang.org"
