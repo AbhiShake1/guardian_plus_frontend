@@ -24,16 +24,17 @@ class _CalendarState extends State<Calendar> {
   @override
   void initState() {
     selectedEvents = {};
-    var json;
-    Future.delayed(const Duration(milliseconds: 0), () async {
-      json = await rootBundle.load('json/events.json');
+    Future.delayed(const Duration(milliseconds: 100), () async {
+      final json = await rootBundle.loadString('json/events.json');
+      final events = jsonDecode(json);
+      for (final event in events) {
+        final dateTime = DateTime.parse(event['date']);
+        final date = "${dateTime.day}-${dateTime.month}-${dateTime.year}";
+        selectedEvents[DateUtils.dateOnly(DateTime.parse(event['date']))]?.add(
+          Event(title: event['event']),
+        );
+      }
     });
-    final events = jsonDecode(json);
-    for (final event in events) {
-      selectedEvents[DateTime.parse(event['date'])]?.add(
-        Event(title: event['event']),
-      );
-    }
     super.initState();
   }
 
