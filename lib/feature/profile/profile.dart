@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:guardian_plus/core/preferences.dart';
 import 'package:guardian_plus/feature/drawer/drawer.dart';
 import 'package:guardian_plus/feature/drawer/name_provider.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -22,10 +23,19 @@ class Profile extends ConsumerWidget {
               Container(
                 decoration: BoxDecoration(
                     color: Colors.black, borderRadius: BorderRadius.circular(50.0)),
-                child: Image.network(
-                  'photo',
-                  width: 200.0,
-                  height: 200.0,
+                child: FutureBuilder<String>(
+                  future: Preferences.getString('image_url_key'),
+                  builder: (_, snapshot) {
+                    if (!snapshot.hasData) return const CircularProgressIndicator();
+                    if (snapshot.data == null) {
+                      return const CircularProgressIndicator();
+                    }
+                    return Image.network(
+                      snapshot.data!,
+                      width: 200.0,
+                      height: 200.0,
+                    );
+                  },
                 ),
               ),
               Stack(

@@ -142,6 +142,8 @@ class Mylogin extends HookWidget {
                           await Preferences.setString(
                               'guardian_key', user.parent ?? '');
                           await Preferences.setString(
+                              'image_url_key', user.imageUrl ?? '');
+                          await Preferences.setString(
                               'contact_key', user.phoneNo?.toString() ?? '');
                           await Preferences.setString(
                               'school_key', user.school ?? '');

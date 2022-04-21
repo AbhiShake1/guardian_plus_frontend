@@ -22,15 +22,17 @@ UserModel _$UserModelFromJson(Map<String, dynamic> json) {
 class _$UserModelTearOff {
   const _$UserModelTearOff();
 
-  _UserModel call(
-      {String? userId,
-      String? grade,
-      String? parent,
-      String? address,
-      String? school,
-      int? phoneNo,
-      bool? isStaff,
-      bool? isSuperuser}) {
+  _UserModel call({
+    String? userId,
+    String? grade,
+    String? parent,
+    String? address,
+    String? school,
+    int? phoneNo,
+    bool? isStaff,
+    bool? isSuperuser,
+    String? imageUrl,
+  }) {
     return _UserModel(
       userId: userId,
       grade: grade,
@@ -40,6 +42,7 @@ class _$UserModelTearOff {
       phoneNo: phoneNo,
       isStaff: isStaff,
       isSuperuser: isSuperuser,
+      imageUrl: imageUrl,
     );
   }
 
@@ -61,11 +64,11 @@ mixin _$UserModel {
   int? get phoneNo => throw _privateConstructorUsedError;
   bool? get isStaff => throw _privateConstructorUsedError;
   bool? get isSuperuser => throw _privateConstructorUsedError;
+  String? get imageUrl => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $UserModelCopyWith<UserModel> get copyWith =>
-      throw _privateConstructorUsedError;
+  $UserModelCopyWith<UserModel> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -80,7 +83,8 @@ abstract class $UserModelCopyWith<$Res> {
       String? school,
       int? phoneNo,
       bool? isStaff,
-      bool? isSuperuser});
+      bool? isSuperuser,
+      String? imageUrl});
 }
 
 /// @nodoc
@@ -101,6 +105,7 @@ class _$UserModelCopyWithImpl<$Res> implements $UserModelCopyWith<$Res> {
     Object? phoneNo = freezed,
     Object? isStaff = freezed,
     Object? isSuperuser = freezed,
+    Object? imageUrl = freezed,
   }) {
     return _then(_value.copyWith(
       userId: userId == freezed
@@ -135,14 +140,17 @@ class _$UserModelCopyWithImpl<$Res> implements $UserModelCopyWith<$Res> {
           ? _value.isSuperuser
           : isSuperuser // ignore: cast_nullable_to_non_nullable
               as bool?,
+      imageUrl: imageUrl == freezed
+          ? _value.imageUrl
+          : imageUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
 
 /// @nodoc
 abstract class _$UserModelCopyWith<$Res> implements $UserModelCopyWith<$Res> {
-  factory _$UserModelCopyWith(
-          _UserModel value, $Res Function(_UserModel) then) =
+  factory _$UserModelCopyWith(_UserModel value, $Res Function(_UserModel) then) =
       __$UserModelCopyWithImpl<$Res>;
   @override
   $Res call(
@@ -153,7 +161,8 @@ abstract class _$UserModelCopyWith<$Res> implements $UserModelCopyWith<$Res> {
       String? school,
       int? phoneNo,
       bool? isStaff,
-      bool? isSuperuser});
+      bool? isSuperuser,
+      String? imageUrl});
 }
 
 /// @nodoc
@@ -175,6 +184,7 @@ class __$UserModelCopyWithImpl<$Res> extends _$UserModelCopyWithImpl<$Res>
     Object? phoneNo = freezed,
     Object? isStaff = freezed,
     Object? isSuperuser = freezed,
+    Object? imageUrl = freezed,
   }) {
     return _then(_UserModel(
       userId: userId == freezed
@@ -205,10 +215,6 @@ class __$UserModelCopyWithImpl<$Res> extends _$UserModelCopyWithImpl<$Res>
           ? _value.isStaff
           : isStaff // ignore: cast_nullable_to_non_nullable
               as bool?,
-      isSuperuser: isSuperuser == freezed
-          ? _value.isSuperuser
-          : isSuperuser // ignore: cast_nullable_to_non_nullable
-              as bool?,
     ));
   }
 }
@@ -224,7 +230,8 @@ class _$_UserModel implements _UserModel {
       this.school,
       this.phoneNo,
       this.isStaff,
-      this.isSuperuser});
+      this.isSuperuser,
+      this.imageUrl});
 
   factory _$_UserModel.fromJson(Map<String, dynamic> json) =>
       _$$_UserModelFromJson(json);
@@ -245,10 +252,12 @@ class _$_UserModel implements _UserModel {
   final bool? isStaff;
   @override
   final bool? isSuperuser;
+  @override
+  final String? imageUrl;
 
   @override
   String toString() {
-    return 'UserModel(userId: $userId, grade: $grade, parent: $parent, address: $address, school: $school, phoneNo: $phoneNo, isStaff: $isStaff, isSuperuser: $isSuperuser)';
+    return 'UserModel(userId: $userId, grade: $grade, parent: $parent, address: $address, school: $school, phoneNo: $phoneNo, isStaff: $isStaff, isSuperuser: $isSuperuser, imageUrl: $imageUrl)';
   }
 
   @override
@@ -263,21 +272,23 @@ class _$_UserModel implements _UserModel {
             const DeepCollectionEquality().equals(other.school, school) &&
             const DeepCollectionEquality().equals(other.phoneNo, phoneNo) &&
             const DeepCollectionEquality().equals(other.isStaff, isStaff) &&
-            const DeepCollectionEquality()
-                .equals(other.isSuperuser, isSuperuser));
+            const DeepCollectionEquality().equals(other.isSuperuser, isSuperuser) &&
+            const DeepCollectionEquality().equals(other.imageUrl, imageUrl));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(userId),
-      const DeepCollectionEquality().hash(grade),
-      const DeepCollectionEquality().hash(parent),
-      const DeepCollectionEquality().hash(address),
-      const DeepCollectionEquality().hash(school),
-      const DeepCollectionEquality().hash(phoneNo),
-      const DeepCollectionEquality().hash(isStaff),
-      const DeepCollectionEquality().hash(isSuperuser));
+        runtimeType,
+        const DeepCollectionEquality().hash(userId),
+        const DeepCollectionEquality().hash(grade),
+        const DeepCollectionEquality().hash(parent),
+        const DeepCollectionEquality().hash(address),
+        const DeepCollectionEquality().hash(school),
+        const DeepCollectionEquality().hash(phoneNo),
+        const DeepCollectionEquality().hash(isStaff),
+        const DeepCollectionEquality().hash(isSuperuser),
+        const DeepCollectionEquality().hash(imageUrl),
+      );
 
   @JsonKey(ignore: true)
   @override
@@ -299,10 +310,10 @@ abstract class _UserModel implements UserModel {
       String? school,
       int? phoneNo,
       bool? isStaff,
-      bool? isSuperuser}) = _$_UserModel;
+      bool? isSuperuser,
+      String? imageUrl}) = _$_UserModel;
 
-  factory _UserModel.fromJson(Map<String, dynamic> json) =
-      _$_UserModel.fromJson;
+  factory _UserModel.fromJson(Map<String, dynamic> json) = _$_UserModel.fromJson;
 
   @override
   String? get userId;
@@ -321,7 +332,8 @@ abstract class _UserModel implements UserModel {
   @override
   bool? get isSuperuser;
   @override
+  String? get imageUrl;
+  @override
   @JsonKey(ignore: true)
-  _$UserModelCopyWith<_UserModel> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$UserModelCopyWith<_UserModel> get copyWith => throw _privateConstructorUsedError;
 }

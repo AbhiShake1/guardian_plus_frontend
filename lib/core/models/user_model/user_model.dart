@@ -13,7 +13,8 @@ class UserModel with _$UserModel {
       String? school,
       int? phoneNo,
       bool? isStaff,
-      bool? isSuperuser}) = _UserModel;
+      bool? isSuperuser,
+      String? imageUrl}) = _UserModel;
 
   factory UserModel.fromJson(Map<String, dynamic> json) => _$UserModelFromJson(json);
 }
