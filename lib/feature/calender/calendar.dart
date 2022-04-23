@@ -2,18 +2,21 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 import '../../feature/event/event.dart';
 
-class Calendar extends StatefulWidget {
+final eventsRef = FutureProvider((_) => rootBundle.loadString('json/events.json'));
+
+class Calendar extends ConsumerStatefulWidget {
   const Calendar({Key? key}) : super(key: key);
 
   @override
   _CalendarState createState() => _CalendarState();
 }
 
-class _CalendarState extends State<Calendar> {
+class _CalendarState extends ConsumerState<Calendar> {
   late Map<DateTime, List<Event>> selectedEvents;
   CalendarFormat format = CalendarFormat.month;
   DateTime selectedDay = DateTime.now();
@@ -24,17 +27,6 @@ class _CalendarState extends State<Calendar> {
   @override
   void initState() {
     selectedEvents = {};
-    Future.delayed(const Duration(milliseconds: 100), () async {
-      final json = await rootBundle.loadString('json/events.json');
-      final events = jsonDecode(json);
-      for (final event in events) {
-        final dateTime = DateTime.parse(event['date']);
-        final date = "${dateTime.day}-${dateTime.month}-${dateTime.year}";
-        selectedEvents[DateUtils.dateOnly(DateTime.parse(event['date']))]?.add(
-          Event(title: event['event']),
-        );
-      }
-    });
     super.initState();
   }
 
@@ -50,6 +42,19 @@ class _CalendarState extends State<Calendar> {
 
   @override
   Widget build(BuildContext context) {
+    ref.watch(eventsRef).whenData((json) {
+      final events = jsonDecode(json);
+      for (final event in events) {
+        final date = normalizeDate(DateTime.parse(event['date']));
+        if (selectedEvents[date] != null) {
+          selectedEvents[date]?.add(
+            Event(title: event['event']),
+          );
+        } else {
+          selectedEvents[date] = [Event(title: event['event'])];
+        }
+      }
+    });
     return Scaffold(
       appBar: AppBar(
         title: const Text("Guardian Plus"),
