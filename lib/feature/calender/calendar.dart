@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -24,12 +23,6 @@ class _CalendarState extends ConsumerState<Calendar> {
 
   final TextEditingController _eventController = TextEditingController();
 
-  @override
-  void initState() {
-    selectedEvents = {};
-    super.initState();
-  }
-
   List<Event> _getEventsfromDay(DateTime date) {
     return selectedEvents[date] ?? [];
   }
@@ -42,7 +35,8 @@ class _CalendarState extends ConsumerState<Calendar> {
 
   @override
   Widget build(BuildContext context) {
-    ref.watch(eventsRef).whenData((json) {
+    selectedEvents = {};
+    ref.read(eventsRef).whenData((json) {
       final events = jsonDecode(json);
       for (final event in events) {
         final date = normalizeDate(DateTime.parse(event['date']));
