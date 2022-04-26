@@ -16,6 +16,34 @@ class FeedbackPage extends StatefulHookConsumerWidget {
 class _FeedbackPageState extends ConsumerState<FeedbackPage> {
   List<bool> isTypeSelected = [false, false, false, true, true];
   var scaffoldKey = GlobalKey<ScaffoldState>();
+  var selected = '';
+  final _chechListItems = [
+    {
+      'id': 0,
+      'value': false,
+      'title': 'Login Trouble',
+    },
+    {
+      'id': 1,
+      'value': false,
+      'title': 'Phone number related',
+    },
+    {
+      'id': 2,
+      'value': false,
+      'title': 'Personal profile',
+    },
+    {
+      'id': 3,
+      'value': false,
+      'title': 'Other issues',
+    },
+    {
+      'id': 4,
+      'value': false,
+      'title': 'Suggestions',
+    },
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -40,52 +68,29 @@ class _FeedbackPageState extends ConsumerState<FeedbackPage> {
               height: 130.0,
             ),
             const SizedBox(height: 25.0),
-            GestureDetector(
-              child: buildCheckItem(
-                title: "Login trouble",
-                isSelected: isTypeSelected[0],
-              ),
-              onTap: () {
-                setState(() {
-                  isTypeSelected[0] = !isTypeSelected[0];
-                });
-              },
-            ),
-            GestureDetector(
-              child: buildCheckItem(
-                  title: "Phone number related", isSelected: isTypeSelected[1]),
-              onTap: () {
-                setState(() {
-                  isTypeSelected[1] = !isTypeSelected[1];
-                });
-              },
-            ),
-            GestureDetector(
-              child: buildCheckItem(
-                  title: "Personal profile", isSelected: isTypeSelected[2]),
-              onTap: () {
-                setState(() {
-                  isTypeSelected[2] = !isTypeSelected[2];
-                });
-              },
-            ),
-            GestureDetector(
-              child: buildCheckItem(
-                  title: "Other issues", isSelected: isTypeSelected[3]),
-              onTap: () {
-                setState(() {
-                  isTypeSelected[3] = !isTypeSelected[3];
-                });
-              },
-            ),
-            GestureDetector(
-              child: buildCheckItem(
-                  title: "Suggestions", isSelected: isTypeSelected[4]),
-              onTap: () {
-                setState(() {
-                  isTypeSelected[4] = !isTypeSelected[4];
-                });
-              },
+            ...List.generate(
+              _chechListItems.length,
+              (index) => CheckboxListTile(
+                  controlAffinity: ListTileControlAffinity.leading,
+                  contentPadding: EdgeInsets.zero,
+                  dense: true,
+                  title: Text(
+                    _chechListItems[index]["title"] as String,
+                    style: const TextStyle(
+                      fontSize: 16.0,
+                      color: Colors.black,
+                    ),
+                  ),
+                  value: _chechListItems[index]['value'] as bool,
+                  onChanged: (value) {
+                    setState(() {
+                      for (var element in _chechListItems) {
+                        element["value"] = false;
+                      }
+                      _chechListItems[index]["value"] = value as bool;
+                      selected = _chechListItems[index]["title"].toString();
+                    });
+                  }),
             ),
             SizedBox(
               height: 200,
@@ -160,7 +165,7 @@ class _FeedbackPageState extends ConsumerState<FeedbackPage> {
                       onPressed: () async {
                         final result = await context
                             .read(feedbackRepositoryRef)
-                            .postFeedback('title', descriptionController.text);
+                            .postFeedback(selected, descriptionController.text);
                         context.showToast(msg: result ? 'Successful' : 'Failed');
                       },
                       child: const Text(

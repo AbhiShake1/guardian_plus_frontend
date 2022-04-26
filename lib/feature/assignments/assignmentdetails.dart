@@ -26,7 +26,7 @@ class AssignmentDetails extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        'Subject: ${model.task}',
+                        'Subject: ${model.subject}',
                         style: const TextStyle(
                           fontSize: 25.0,
                           fontWeight: FontWeight.bold,
