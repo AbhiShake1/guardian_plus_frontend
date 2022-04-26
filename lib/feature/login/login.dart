@@ -75,6 +75,7 @@ class Mylogin extends HookWidget {
                   ),
                 ),
                 TextFormField(
+                  obscureText: true,
                   controller: passwordController,
                   style: const TextStyle(
                     fontFamily: 'ProximaNova',
